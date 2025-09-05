@@ -13,7 +13,7 @@ const Footer = () => {
           <div className={styles.infoGrid}>
             <div className={styles.infoBlock}>
               <h4 className={styles.title}>Phone</h4>
-              <p className={styles.text}>+4930 915-88492</p>
+              <p className={styles.text}>+49 30 915-88492</p>
             </div>
             <div className={styles.infoBlock}>
               <h4 className={styles.title}>Socials</h4>
