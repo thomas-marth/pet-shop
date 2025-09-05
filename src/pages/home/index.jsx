@@ -1,11 +1,13 @@
-import styles from "./styles.module.css";
+// import styles from "./styles.module.css";
+import Hero from "../../components/hero";
 
 function HomePage() {
   return (
-    <div className={styles.container}>
-      <h1>Main Page</h1>
-      <p></p>
-    </div>
+    <>
+      <Hero />
+    </>
+    // <div className={styles.container}>
+    // </div>
   );
 }
 
