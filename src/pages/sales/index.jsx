@@ -1,11 +1,11 @@
 import styles from "./styles.module.css";
 
-function AllSales() {
+function SalesPage() {
   return (
     <div className={styles.container}>
-      <h1>All Sales Page</h1>
+      <h1>Sales</h1>
     </div>
   );
 }
 
-export default AllSales;
+export default SalesPage;
