@@ -48,7 +48,7 @@ const Header = () => {
         </nav>
         {/* Cart icon */}
         <NavLink to="/cart" className={styles.cartLink} aria-label="Cart">
-          <img src={ShoppingBag} alt="Shopping Bag" />
+          <img className={styles.cart} src={ShoppingBag} alt="Shopping Bag" />
         </NavLink>
       </div>
     </header>
