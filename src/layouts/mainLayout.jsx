@@ -6,7 +6,7 @@ const MainLayout = () => {
   return (
     <>
       <Header />
-      <main style={{ flex: 1, minHeight: "60vh" }}>
+      <main style={{ flex: 0 }}>
         <Outlet />
       </main>
       <Footer />

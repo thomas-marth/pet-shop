@@ -24,6 +24,7 @@ const CategoriesSection = () => {
         <div className={styles.top}>
           <h2 className={styles.title}>Categories</h2>
           <div className={styles.buttonWrapper}>
+            <div className={styles.divider} />
             <Button
               component={NavLink}
               to="/categories"
@@ -45,7 +46,6 @@ const CategoriesSection = () => {
             >
               All categories
             </Button>
-            <div className={styles.divider} />
           </div>
         </div>
         <ul className={styles.list}>
