@@ -1,0 +1,53 @@
+.section {
+  padding: 40px 0;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.title {
+  margin-bottom: 0;
+}
+
+.buttonWrapper {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.divider {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ddd;
+  margin-left: 16px;
+}
+
+.list {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.item {
+  cursor: pointer;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+.name {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+}
