@@ -38,9 +38,12 @@ const CategoriesSection = () => {
                 lineHeight: 1.3,
                 textTransform: "none",
                 borderRadius: "6px",
+                marginTop: "9px",
+                transition: "all 0.3s",
                 "&:hover": {
-                  borderColor: "#DDD",
-                  backgroundColor: "rgba(0,0,0,0.04)",
+                  // borderColor: "#DDD",
+                  backgroundColor: "#282828",
+                  color: "#fff",
                 },
               }}
             >
@@ -55,8 +58,14 @@ const CategoriesSection = () => {
               : `${CONFIG.API_URL}/${cat.image}`;
             return (
               <li key={cat.id} className={styles.item}>
-                <NavLink to={`/categories/${cat.id}`}>
-                  <img src={imgSrc} alt={cat.title} className={styles.image} />
+                <NavLink to={`/categories/${cat.id}`} className={styles.link}>
+                  <div className={styles.imageWrapper}>
+                    <img
+                      src={imgSrc}
+                      alt={cat.title}
+                      className={styles.image}
+                    />
+                  </div>
                   <p className={styles.name}>{cat.title}</p>
                 </NavLink>
               </li>
