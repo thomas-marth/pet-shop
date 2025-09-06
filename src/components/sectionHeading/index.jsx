@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import styles from "./styles.module.css";
 
-const SectionHeader = ({ title, to, buttonText }) => {
+const SectionHeading = ({ title, to, buttonText }) => {
   return (
     <div className={styles.top}>
       <h2 className={styles.title}>{title}</h2>
@@ -36,4 +36,4 @@ const SectionHeader = ({ title, to, buttonText }) => {
   );
 };
 
-export default SectionHeader;
+export default SectionHeading;

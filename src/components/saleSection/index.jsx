@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import SectionHeader from "../sectionHeader";
+import SectionHeading from "../sectionHeading";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,7 +37,7 @@ const SaleSection = () => {
   return (
     <section className={styles.section}>
       <div className="container">
-        <SectionHeader title="Sale" to="/sales" buttonText="All sales" />
+        <SectionHeading title="Sale" to="/sales" buttonText="All sales" />
         <ul className={styles.list}>
           {discountedProducts.map((product) => {
             const imgSrc = product.image?.startsWith("http")

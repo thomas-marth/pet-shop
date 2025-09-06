@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import BreadcrumbsNav from "@/components/breadcrumbs";
 import { http } from "@/shared/http";
 import styles from "./styles.module.css";
 
@@ -22,9 +23,17 @@ function ProductsPage() {
   }, [id]);
 
   const title = id ? product?.title || "Loading..." : "All products";
+  const items = id
+    ? [
+        { path: "/", label: "Main Page" },
+        { path: "/products", label: "All products" },
+        { label: title },
+      ]
+    : [{ path: "/", label: "Main Page" }, { label: title }];
 
   return (
     <div className={styles.container}>
+      <BreadcrumbsNav items={items} />
       <h1>{title}</h1>
     </div>
   );

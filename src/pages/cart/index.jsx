@@ -1,9 +1,14 @@
 import styles from "./styles.module.css";
+import SectionHeading from "./../../components/sectionHeading";
 
 function CartPage() {
   return (
     <div className={styles.container}>
-      <h1>Shopping cart</h1>
+      <SectionHeading
+        title="Shopping cart"
+        to="/"
+        buttonText="Back to the store"
+      />
     </div>
   );
 }
