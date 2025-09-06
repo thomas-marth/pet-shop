@@ -12,7 +12,7 @@ function ProductsPage() {
       const fetchProduct = async () => {
         try {
           const { data } = await http.get(`/products/${id}`);
-          setProduct(data.product);
+          setProduct(data);
         } catch {
           setProduct(null);
         }
