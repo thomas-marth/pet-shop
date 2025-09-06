@@ -42,16 +42,28 @@ const DiscountForm = () => {
               {...register("name", { required: true })}
             />
             <input
-              type="text"
+              type="tel"
               placeholder="Phone number"
               className={`${styles.input} ${errors.phone ? styles.error : ""}`}
-              {...register("phone", { required: true })}
+              {...register("phone", {
+                required: true,
+                pattern: {
+                  value: /^\+?[0-9]{10,15}$/,
+                  message: "Invalid phone number",
+                },
+              })}
             />
             <input
               type="email"
               placeholder="Email"
               className={`${styles.input} ${errors.email ? styles.error : ""}`}
-              {...register("email", { required: true })}
+              {...register("email", {
+                required: true,
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Invalid email address",
+                },
+              })}
             />
           </div>
           <button type="submit" className={styles.button}>
