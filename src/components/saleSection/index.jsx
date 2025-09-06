@@ -1,5 +1,10 @@
+import styles from "./styles.module.css";
+import SectionHeader from "../sectionHeader";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "@/redux/slices/productSlice";
+import { CONFIG } from "@/shared/config";
 import {
   Button,
   Card,
@@ -9,14 +14,10 @@ import {
   Typography,
 } from "@mui/material";
 
-import SectionHeader from "../sectionHeader";
-import { fetchProducts } from "@/redux/slices/productSlice";
-import { CONFIG } from "@/shared/config";
-import styles from "./styles.module.css";
-
 const SaleSection = () => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.products);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!items.length) {
@@ -44,7 +45,10 @@ const SaleSection = () => {
               : `${CONFIG.API_URL}/${product.image}`;
             return (
               <li key={product.id} className={styles.item}>
-                <Card className={`${styles.card} ${styles.mui}`}>
+                <Card
+                  className={`${styles.card} ${styles.mui}`}
+                  onClick={() => navigate(`/products/${product.id}`)}
+                >
                   <Box className={styles.badge}>-{product.discount}%</Box>
                   <Box className={styles.mediaWrapper}>
                     <CardMedia
@@ -56,6 +60,7 @@ const SaleSection = () => {
                     <Button
                       variant="contained"
                       className={`${styles.addButton} ${styles.mui}`}
+                      onClick={(e) => e.stopPropagation()}
                     >
                       Add to cart
                     </Button>
