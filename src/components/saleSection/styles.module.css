@@ -54,6 +54,16 @@
   transition: background-color 0.3s, opacity 0.3s, transform 0.3s;
 } */
 
+.card:hover .addButton {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.addButton:hover {
+  background-color: #000;
+}
+
 .name {
   white-space: nowrap;
   overflow: hidden;
