@@ -21,7 +21,7 @@ const Hero = () => {
               backgroundColor: "#0D50FF",
               padding: "16px 56px",
               "&:hover": {
-                backgroundColor: "#0a44d6",
+                backgroundColor: "#0e4ae2",
               },
             }}
           >
