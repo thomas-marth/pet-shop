@@ -3,31 +3,6 @@
   margin-bottom: 106px;
 }
 
-.top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
-}
-
-.title {
-  margin-bottom: 0;
-}
-
-.buttonWrapper {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  justify-content: flex-end;
-}
-
-.divider {
-  flex-grow: 1;
-  height: 1px;
-  background-color: #ddd;
-  margin-left: 16px;
-  margin-top: 9px;
-}
 
 .list {
   display: grid;
