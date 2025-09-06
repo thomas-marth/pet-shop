@@ -13,6 +13,7 @@ function CategoriesPage() {
         try {
           const { data } = await http.get(`/categories/${id}`);
           setCategory(data.category);
+          console.log("Data ", data.category);
         } catch {
           setCategory(null);
         }

@@ -12,7 +12,8 @@ function ProductsPage() {
       const fetchProduct = async () => {
         try {
           const { data } = await http.get(`/products/${id}`);
-          setProduct(data);
+          setProduct(data[0]);
+          console.log(data[0].title);
         } catch {
           setProduct(null);
         }
