@@ -44,17 +44,7 @@ const SaleSection = () => {
               : `${CONFIG.API_URL}/${product.image}`;
             return (
               <li key={product.id} className={styles.item}>
-                <Card
-                  className={styles.card}
-                  sx={{
-                    border: "1px solid #ddd",
-                    borderRadius: "12px",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    boxShadow: "none",
-                  }}
-                >
+                <Card className={`${styles.card} ${styles.mui}`}>
                   <Box className={styles.badge}>-{product.discount}%</Box>
                   <Box className={styles.mediaWrapper}>
                     <CardMedia
@@ -65,69 +55,30 @@ const SaleSection = () => {
                     />
                     <Button
                       variant="contained"
-                      className={styles.addButton}
-                      sx={{
-                        position: "absolute",
-                        left: "16px",
-                        right: "16px",
-                        bottom: "16px",
-                        backgroundColor: "#0d50ff",
-                        color: "#fff",
-                        textTransform: "none",
-                        borderRadius: "6px",
-                        opacity: "0",
-                        transform: "translateY(100%)",
-                        pointerEvents: "none",
-                        transition:
-                          "background-color 0.3s, opacity 0.3s, transform 0.3s",
-                      }}
+                      className={`${styles.addButton} ${styles.mui}`}
                     >
                       Add to cart
                     </Button>
                   </Box>
                   <CardContent
-                    sx={{
-                      padding: "20px 32px 32px 32px",
-                      borderTop: "1px solid #ddd",
-                    }}
+                    className={`${styles.CardContent} ${styles.mui}`}
                   >
                     <Typography
                       component="h3"
-                      className={styles.name}
-                      sx={{
-                        color: "#282828",
-                        fontFamily: "Montserrat",
-                        fontSize: "20px",
-                        fontWeight: "500",
-                        lineHeight: "1.3",
-                        marginBottom: "16px",
-                      }}
+                      className={`${styles.name} ${styles.mui}`}
                     >
                       {product.title}
                     </Typography>
                     <div className={styles.prices}>
                       <Typography
                         component="span"
-                        className={styles.newPrice}
-                        sx={{
-                          color: "#282828",
-                          fontFamily: "Montserrat",
-                          fontSize: "40px",
-                          fontWeight: "600",
-                          lineHeight: "1.1",
-                        }}
+                        className={`${styles.newPrice} ${styles.mui}`}
                       >
                         ${product.discont_price}
                       </Typography>
                       <Typography
                         component="span"
-                        className={styles.oldPrice}
-                        sx={{
-                          fontFamily: "Montserrat",
-                          fontSize: "20px",
-                          fontWeight: "500",
-                          lineHeight: "1.3",
-                        }}
+                        className={`${styles.oldPrice} ${styles.mui}`}
                       >
                         ${product.price}
                       </Typography>

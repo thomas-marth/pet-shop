@@ -8,9 +8,14 @@
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
-.card {
+.card.mui {
+  display: flex;
   position: relative;
+  flex-direction: column;
   height: 100%;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: none;
   overflow: hidden;
 }
 
@@ -25,7 +30,7 @@
   top: 16px;
   right: 16px;
   color: #fff;
-  font-family: Montserrat;
+  font-family: "Montserrat";
   font-size: 20px;
   font-weight: 600;
   line-height: 1.3;
@@ -39,12 +44,23 @@
   height: 284px;
 }
 
-/* .addButton {
+.mediaWrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.addButton.mui {
+  font-family: "Montserrat";
+  color: #fff;
+  background-color: #0d50ff;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
   position: absolute;
   left: 16px;
   right: 16px;
   bottom: 16px;
-  background-color: #0d50ff;
+  padding: 16px 32px;
   color: #fff;
   text-transform: none;
   border-radius: 6px;
@@ -52,9 +68,9 @@
   transform: translateY(100%);
   pointer-events: none;
   transition: background-color 0.3s, opacity 0.3s, transform 0.3s;
-} */
+}
 
-.card:hover .addButton {
+.card:hover .addButton.mui {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
@@ -64,7 +80,18 @@
   background-color: #000;
 }
 
-.name {
+.CardContent.mui {
+  padding: 20px 32px 32px 32px;
+  border-top: 1px solid #ddd;
+}
+
+.name.mui {
+  color: #282828;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 16px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -76,7 +103,19 @@
   gap: 16px;
 }
 
+.newPrice.mui {
+  color: #282828;
+  font-family: "Montserrat";
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
 .oldPrice {
   color: #8b8b8b;
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
   text-decoration: line-through;
 }
