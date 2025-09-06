@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  Button,
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
   Box,
@@ -56,13 +56,35 @@ const SaleSection = () => {
                   }}
                 >
                   <Box className={styles.badge}>-{product.discount}%</Box>
-                  {/* <CardActionArea> */}
-                  <CardMedia
-                    component="img"
-                    image={imgSrc}
-                    alt={product.title}
-                    className={styles.image}
-                  />
+                  <Box className={styles.mediaWrapper}>
+                    <CardMedia
+                      component="img"
+                      image={imgSrc}
+                      alt={product.title}
+                      className={styles.image}
+                    />
+                    <Button
+                      variant="contained"
+                      className={styles.addButton}
+                      sx={{
+                        position: "absolute",
+                        left: "16px",
+                        right: "16px",
+                        bottom: "16px",
+                        backgroundColor: "#0d50ff",
+                        color: "#fff",
+                        textTransform: "none",
+                        borderRadius: "6px",
+                        opacity: "0",
+                        transform: "translateY(100%)",
+                        pointerEvents: "none",
+                        transition:
+                          "background-color 0.3s, opacity 0.3s, transform 0.3s",
+                      }}
+                    >
+                      Add to cart
+                    </Button>
+                  </Box>
                   <CardContent
                     sx={{
                       padding: "20px 32px 32px 32px",
@@ -111,7 +133,6 @@ const SaleSection = () => {
                       </Typography>
                     </div>
                   </CardContent>
-                  {/* </CardActionArea> */}
                 </Card>
               </li>
             );

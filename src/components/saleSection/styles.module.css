@@ -11,6 +11,7 @@
 .card {
   position: relative;
   height: 100%;
+  overflow: hidden;
 }
 
 .card:hover {
@@ -37,6 +38,21 @@
 .image {
   height: 284px;
 }
+
+/* .addButton {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  background-color: #0d50ff;
+  color: #fff;
+  text-transform: none;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(100%);
+  pointer-events: none;
+  transition: background-color 0.3s, opacity 0.3s, transform 0.3s;
+} */
 
 .name {
   white-space: nowrap;
