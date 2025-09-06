@@ -2,6 +2,7 @@
 import Hero from "../../components/hero";
 import CategoriesSection from "../../components/categoriesSection/index";
 import DiscountForm from "./../../components/discountForm/index";
+import SalesSection from "../../components/saleSection/index";
 
 function HomePage() {
   return (
@@ -9,6 +10,7 @@ function HomePage() {
       <Hero />
       <CategoriesSection />
       <DiscountForm />
+      <SalesSection />
     </>
     // <div className={styles.container}>
     // </div>
