@@ -8,7 +8,7 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <CategoriesSection />
+      <CategoriesSection limit={4} />
       <DiscountForm />
       <SaleSection />
     </>

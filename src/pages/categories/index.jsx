@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BreadcrumbsNav from "@/components/breadcrumbs";
+import CategoriesSection from "@/components/categoriesSection";
 import { http } from "@/shared/http";
 import styles from "./styles.module.css";
 
@@ -35,7 +36,7 @@ function CategoriesPage() {
   return (
     <div className={styles.container}>
       <BreadcrumbsNav items={items} />
-      <h1>{title}</h1>
+      {id ? <h1>{title}</h1> : <CategoriesSection />}
     </div>
   );
 }

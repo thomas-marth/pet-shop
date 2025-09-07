@@ -6,7 +6,7 @@ import { CONFIG } from "@/shared/config";
 import SectionHeading from "@/components/sectionHeading";
 import styles from "./styles.module.css";
 
-const CategoriesSection = () => {
+const CategoriesSection = ({ limit }) => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.categories);
 
@@ -16,7 +16,7 @@ const CategoriesSection = () => {
     }
   }, [dispatch, items.length]);
 
-  const categories = items.slice(0, 4);
+  const categories = limit ? items.slice(0, limit) : items;
 
   return (
     <section className={styles.section}>
