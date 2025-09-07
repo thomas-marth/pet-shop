@@ -1,5 +1,4 @@
 import styles from "./styles.module.css";
-import SectionHeading from "../sectionHeading";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +13,11 @@ import {
   Typography,
 } from "@mui/material";
 
-const SaleSection = ({ limit, sortByDiscount = false }) => {
+const ProductsSection = ({
+  limit,
+  sortByDiscount = false,
+  discount = false,
+}) => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.products);
   const navigate = useNavigate();
@@ -25,35 +28,44 @@ const SaleSection = ({ limit, sortByDiscount = false }) => {
     }
   }, [dispatch, items.length]);
 
-  const discounted = items
-    .filter((p) => p.discont_price && p.discont_price < p.price)
-    .map((p) => ({
+  let products = items.map((p) => {
+    const hasDiscount = p.discont_price && p.discont_price < p.price;
+    return {
       ...p,
-      discount: Math.round(((p.price - p.discont_price) / p.price) * 100),
-    }));
+      discount: hasDiscount
+        ? Math.round(((p.price - p.discont_price) / p.price) * 100)
+        : null,
+    };
+  });
 
-  const sortedDiscounted = discounted.sort((a, b) =>
-    sortByDiscount ? b.discount - a.discount : a.id - b.id
+  if (discount) {
+    products = products.filter((p) => p.discount !== null);
+  }
+
+  products = products.sort((a, b) =>
+    sortByDiscount ? (b.discount || 0) - (a.discount || 0) : a.id - b.id
   );
 
-  const discountedProducts = limit
-    ? sortedDiscounted.slice(0, limit)
-    : sortedDiscounted;
+  if (limit) {
+    products = products.slice(0, limit);
+  }
 
   return (
     <section className={styles.section}>
       <ul className={styles.list}>
-        {discountedProducts.map((product) => {
+        {products.map((product) => {
           const imgSrc = product.image?.startsWith("http")
             ? product.image
             : `${CONFIG.API_URL}/${product.image}`;
           return (
-            <li key={product.id} className={styles.item}>
+            <li key={product.id}>
               <Card
                 className={`${styles.card} ${styles.mui}`}
                 onClick={() => navigate(`/products/${product.id}`)}
               >
-                <Box className={styles.badge}>-{product.discount}%</Box>
+                {product.discount && (
+                  <Box className={styles.badge}>-{product.discount}%</Box>
+                )}
                 <Box className={styles.mediaWrapper}>
                   <CardMedia
                     component="img"
@@ -81,14 +93,17 @@ const SaleSection = ({ limit, sortByDiscount = false }) => {
                       component="span"
                       className={`${styles.newPrice} ${styles.mui}`}
                     >
-                      ${product.discont_price}
+                      $
+                      {product.discount ? product.discont_price : product.price}
                     </Typography>
-                    <Typography
-                      component="span"
-                      className={`${styles.oldPrice} ${styles.mui}`}
-                    >
-                      ${product.price}
-                    </Typography>
+                    {product.discount && (
+                      <Typography
+                        component="span"
+                        className={`${styles.oldPrice} ${styles.mui}`}
+                      >
+                        ${product.price}
+                      </Typography>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -100,4 +115,4 @@ const SaleSection = ({ limit, sortByDiscount = false }) => {
   );
 };
 
-export default SaleSection;
+export default ProductsSection;

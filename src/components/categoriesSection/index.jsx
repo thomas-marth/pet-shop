@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { fetchCategories } from "@/redux/slices/categorySlice";
 import { CONFIG } from "@/shared/config";
-import SectionHeading from "@/components/sectionHeading";
 import styles from "./styles.module.css";
 
 const CategoriesSection = ({ limit }) => {
