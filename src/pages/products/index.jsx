@@ -7,6 +7,7 @@ import styles from "./styles.module.css";
 function ProductsPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [category, setCategory] = useState(null);
 
   useEffect(() => {
     if (id) {
@@ -22,11 +23,30 @@ function ProductsPage() {
     }
   }, [id]);
 
+  useEffect(() => {
+    if (product?.categoryId) {
+      const fetchCategory = async () => {
+        try {
+          const { data } = await http.get(`/categories/${product.categoryId}`);
+          setCategory(data.category);
+        } catch {
+          setCategory(null);
+        }
+      };
+      fetchCategory();
+    }
+  }, [product?.categoryId]);
+
   const title = id ? product?.title || "Loading..." : "All products";
+  const categoryTitle = id ? category?.title || "Loading..." : null;
   const items = id
     ? [
         { path: "/", label: "Main Page" },
-        { path: "/products", label: "All products" },
+        { path: "/categories", label: "Categories" },
+        {
+          path: category ? `/categories/${product.categoryId}` : null,
+          label: categoryTitle,
+        },
         { label: title },
       ]
     : [{ path: "/", label: "Main Page" }, { label: title }];
