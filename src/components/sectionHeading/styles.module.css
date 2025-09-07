@@ -16,6 +16,24 @@
   justify-content: flex-end;
 }
 
+.button.mui {
+  color: #8b8b8b;
+  border-color: #ddd;
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-transform: none;
+  border-radius: 6px;
+  margin-top: 9px;
+  transition: all 0.3s;
+}
+
+.button.mui:hover {
+  background-color: #282828;
+  color: #fff;
+}
+
 .divider {
   flex-grow: 1;
   height: 1px;
