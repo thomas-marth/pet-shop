@@ -18,7 +18,7 @@ function HomePage() {
         <CategoriesSection limit={4} />
         <DiscountForm />
         <SectionHeading title="Sale" to="/sales" buttonText="All sales" />
-        <SaleSection />
+        <SaleSection limit={4} />
       </div>
     </>
     // <div className={styles.container}>

@@ -14,7 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 
-const SaleSection = () => {
+const SaleSection = ({ limit }) => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.products);
   const navigate = useNavigate();
@@ -25,14 +25,15 @@ const SaleSection = () => {
     }
   }, [dispatch, items.length]);
 
-  const discountedProducts = items
+  const discounted = items
     .filter((p) => p.discont_price && p.discont_price < p.price)
     .map((p) => ({
       ...p,
       discount: Math.round(((p.price - p.discont_price) / p.price) * 100),
     }))
-    .sort((a, b) => b.discount - a.discount)
-    .slice(0, 4);
+    .sort((a, b) => b.discount - a.discount);
+
+  const discountedProducts = limit ? discounted.slice(0, limit) : discounted;
 
   return (
     <section className={styles.section}>
