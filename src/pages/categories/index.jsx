@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import BreadcrumbsNav from "@/components/breadcrumbs";
-import CategoriesSection from "@/components/categoriesSection";
+import CategoriesSection from "../../components/categoriesSection";
+import BreadcrumbsNav from "../../ui/breadcrumbs";
 import { http } from "@/shared/http";
 
 function CategoriesPage() {

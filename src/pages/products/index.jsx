@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import BreadcrumbsNav from "@/components/breadcrumbs";
 import { http } from "@/shared/http";
 import styles from "./styles.module.css";
+import BreadcrumbsNav from "../../ui/breadcrumbs";
 import ProductsSection from "../../components/productsSection/index";
 
 function ProductsPage() {

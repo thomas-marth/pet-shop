@@ -1,5 +1,5 @@
-import BreadcrumbsNav from "@/components/breadcrumbs";
 import styles from "./styles.module.css";
+import BreadcrumbsNav from "../../ui/breadcrumbs";
 import ProductsSection from "../../components/productsSection";
 
 function SalesPage() {

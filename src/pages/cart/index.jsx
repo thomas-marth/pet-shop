@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import SectionHeading from "./../../components/sectionHeading";
+import SectionHeading from "../../ui/sectionHeading";
 
 function CartPage() {
   return (

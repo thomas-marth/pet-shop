@@ -91,6 +91,10 @@
   border-top: 1px solid #ddd;
 }
 
+.CardContent.mui:last-child {
+  padding-bottom: 32px;
+}
+
 .name.mui {
   color: #282828;
   font-family: Montserrat;
