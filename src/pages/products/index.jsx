@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { http } from "@/shared/http";
 import styles from "./styles.module.css";
 import BreadcrumbsNav from "../../ui/breadcrumbs";
-import ProductsSection from "../../components/productsSection/index";
+import ProductsList from "../../components/productsList";
 
 function ProductsPage() {
   const { id } = useParams();
@@ -56,7 +56,7 @@ function ProductsPage() {
     <div className={styles.container}>
       <BreadcrumbsNav items={items} />
       <h1>{title}</h1>
-      {!id && <ProductsSection />}
+      {!id && <ProductsList />}
     </div>
   );
 }

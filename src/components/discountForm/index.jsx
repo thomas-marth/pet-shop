@@ -10,15 +10,19 @@ const DiscountForm = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: "onChange" });
 
   const [open, setOpen] = useState(false);
+  const [buttonText, setButtonText] = useState("Get a discount");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const onSubmit = async (data) => {
     try {
       await http.post("/sale/send", data);
       reset();
       setOpen(true);
+      setButtonText("Request Submitted");
+      setIsSubmitted(true);
     } catch (error) {
       console.log(error);
     }
@@ -27,6 +31,8 @@ const DiscountForm = () => {
   const handleClose = (_, reason) => {
     if (reason === "clickaway") return;
     setOpen(false);
+    setButtonText("Get a discount");
+    setIsSubmitted(false);
   };
 
   return (
@@ -66,8 +72,13 @@ const DiscountForm = () => {
               })}
             />
           </div>
-          <button type="submit" className={styles.button}>
-            Get a discount
+          <button
+            type="submit"
+            className={`${styles.button} ${
+              isSubmitted ? styles.submitted : ""
+            }`}
+          >
+            {buttonText}
           </button>
         </form>
       </section>

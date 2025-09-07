@@ -70,3 +70,8 @@ input::placeholder {
   color: #fff;
   background-color: #000;
 }
+
+.submitted {
+  background: #f1f3f4;
+  color: #0d50ff;
+}

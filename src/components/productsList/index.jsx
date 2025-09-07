@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 
-const ProductsSection = ({
+const ProductsList = ({
   limit,
   sortByDiscount = false,
   discount = false,
@@ -118,4 +118,4 @@ const ProductsSection = ({
   );
 };
 
-export default ProductsSection;
+export default ProductsList;

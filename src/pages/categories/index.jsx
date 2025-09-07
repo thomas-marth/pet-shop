@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CategoriesSection from "../../components/categoriesSection";
-import ProductsSection from "./../../components/productsSection";
+import CategoriesList from "../../components/categoriesList";
+import ProductsList from "../../components/productsList";
 import BreadcrumbsNav from "../../ui/breadcrumbs";
 import { http } from "@/shared/http";
 
@@ -32,6 +32,7 @@ function CategoriesPage() {
       ? "Loading..."
       : category?.title || "Category"
     : "Categories";
+
   const items = id
     ? [
         { path: "/", label: "Main Page" },
@@ -48,10 +49,10 @@ function CategoriesPage() {
         loading ? (
           <p>Loading...</p>
         ) : (
-          <ProductsSection categoryId={Number(id)} />
+          <ProductsList categoryId={Number(id)} />
         )
       ) : (
-        <CategoriesSection />
+        <CategoriesList />
       )}
     </div>
   );

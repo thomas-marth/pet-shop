@@ -1,8 +1,8 @@
 import Hero from "../../components/hero";
-import CategoriesSection from "../../components/categoriesSection";
+import CategoriesList from "../../components/categoriesList";
 import DiscountForm from "./../../components/discountForm";
 import SectionHeading from "../../ui/sectionHeading";
-import ProductsSection from "../../components/productsSection";
+import ProductsList from "../../components/productsList";
 
 function HomePage() {
   return (
@@ -14,10 +14,10 @@ function HomePage() {
           to="/categories"
           buttonText="All categories"
         />
-        <CategoriesSection limit={4} />
+        <CategoriesList limit={4} />
         <DiscountForm />
         <SectionHeading title="Sale" to="/sales" buttonText="All sales" />
-        <ProductsSection limit={4} sortByDiscount discount />
+        <ProductsList limit={4} sortByDiscount discount />
       </div>
     </>
     // <div className={styles.container}>
