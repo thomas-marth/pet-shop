@@ -8,9 +8,11 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <CategoriesSection limit={4} />
-      <DiscountForm />
-      <SaleSection />
+      <div className="container">
+        <CategoriesSection limit={4} />
+        <DiscountForm />
+        <SaleSection />
+      </div>
     </>
     // <div className={styles.container}>
     // </div>

@@ -20,34 +20,30 @@ const CategoriesSection = ({ limit }) => {
 
   return (
     <section className={styles.section}>
-      <div className="container">
-        <SectionHeading
-          title="Categories"
-          to="/categories"
-          buttonText="All categories"
-        />
-        <ul className={styles.list}>
-          {categories.map((cat) => {
-            const imgSrc = cat.image?.startsWith("http")
-              ? cat.image
-              : `${CONFIG.API_URL}/${cat.image}`;
-            return (
-              <li key={cat.id} className={styles.item}>
-                <NavLink to={`/categories/${cat.id}`} className={styles.link}>
-                  <div className={styles.imageWrapper}>
-                    <img
-                      src={imgSrc}
-                      alt={cat.title}
-                      className={styles.image}
-                    />
-                  </div>
-                  <p className={styles.name}>{cat.title}</p>
-                </NavLink>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      {/* <div className="container"> */}
+      <SectionHeading
+        title="Categories"
+        to="/categories"
+        buttonText="All categories"
+      />
+      <ul className={styles.list}>
+        {categories.map((cat) => {
+          const imgSrc = cat.image?.startsWith("http")
+            ? cat.image
+            : `${CONFIG.API_URL}/${cat.image}`;
+          return (
+            <li key={cat.id} className={styles.item}>
+              <NavLink to={`/categories/${cat.id}`} className={styles.link}>
+                <div className={styles.imageWrapper}>
+                  <img src={imgSrc} alt={cat.title} className={styles.image} />
+                </div>
+                <p className={styles.name}>{cat.title}</p>
+              </NavLink>
+            </li>
+          );
+        })}
+      </ul>
+      {/* </div> */}
     </section>
   );
 };

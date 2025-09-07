@@ -3,11 +3,16 @@
   margin-bottom: 106px;
 }
 
-
 .list {
   display: grid;
   gap: 24px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+@media (min-width: 1024px) {
+  .list {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .item {

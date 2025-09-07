@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import BreadcrumbsNav from "@/components/breadcrumbs";
 import CategoriesSection from "@/components/categoriesSection";
 import { http } from "@/shared/http";
-import styles from "./styles.module.css";
 
 function CategoriesPage() {
   const { id } = useParams();
@@ -34,7 +33,7 @@ function CategoriesPage() {
     : [{ path: "/", label: "Main Page" }, { label: title }];
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <BreadcrumbsNav items={items} />
       {id ? <h1>{title}</h1> : <CategoriesSection />}
     </div>

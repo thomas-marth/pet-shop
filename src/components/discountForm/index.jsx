@@ -30,7 +30,7 @@ const DiscountForm = () => {
   };
 
   return (
-    <div className="container">
+    <>
       <section className={styles.section}>
         <h2 className={styles.title}>5% off on the first order</h2>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -87,7 +87,7 @@ const DiscountForm = () => {
           your e-mail!
         </Alert>
       </Snackbar>
-    </div>
+    </>
   );
 };
 export default DiscountForm;
