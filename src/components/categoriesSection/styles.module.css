@@ -1,11 +1,11 @@
 .section {
-  padding-top: 80px;
+  /* padding-top: 80px; */
   margin-bottom: 106px;
 }
 
 .list {
   display: grid;
-  gap: 24px;
+  gap: 32px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 

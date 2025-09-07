@@ -36,7 +36,6 @@ const SaleSection = () => {
 
   return (
     <section className={styles.section}>
-      <SectionHeading title="Sale" to="/sales" buttonText="All sales" />
       <ul className={styles.list}>
         {discountedProducts.map((product) => {
           const imgSrc = product.image?.startsWith("http")

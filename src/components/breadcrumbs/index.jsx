@@ -31,7 +31,7 @@ const Divider = () => (
 
 const BreadcrumbsNav = ({ items }) => {
   return (
-    <Box sx={{ display: "flex", alignItems: "center", mb: "40px" }}>
+    <Box sx={{ display: "flex", alignItems: "center", mb: "40px", mt: "40px" }}>
       {items.map((item, index) => {
         const isLast = index === items.length - 1;
         const buttonProps =

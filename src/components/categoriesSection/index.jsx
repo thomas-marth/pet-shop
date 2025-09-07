@@ -21,11 +21,7 @@ const CategoriesSection = ({ limit }) => {
   return (
     <section className={styles.section}>
       {/* <div className="container"> */}
-      <SectionHeading
-        title="Categories"
-        to="/categories"
-        buttonText="All categories"
-      />
+
       <ul className={styles.list}>
         {categories.map((cat) => {
           const imgSrc = cat.image?.startsWith("http")

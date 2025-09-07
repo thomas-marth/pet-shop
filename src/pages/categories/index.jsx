@@ -35,7 +35,8 @@ function CategoriesPage() {
   return (
     <div className="container">
       <BreadcrumbsNav items={items} />
-      {id ? <h1>{title}</h1> : <CategoriesSection />}
+      <h1>{title}</h1>
+      {id ? <p>Loading...</p> : <CategoriesSection />}
     </div>
   );
 }
