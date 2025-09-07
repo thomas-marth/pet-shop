@@ -55,7 +55,7 @@ const ProductsSection = ({
 
   return (
     <section className={styles.section}>
-      <ul className={styles.list}>
+      <ul className={`${styles.list} ${styles.mui}`}>
         {products.map((product) => {
           const imgSrc = product.image?.startsWith("http")
             ? product.image
