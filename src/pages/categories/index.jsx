@@ -1,29 +1,37 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CategoriesSection from "../../components/categoriesSection";
+import ProductsSection from "./../../components/productsSection";
 import BreadcrumbsNav from "../../ui/breadcrumbs";
 import { http } from "@/shared/http";
 
 function CategoriesPage() {
   const { id } = useParams();
   const [category, setCategory] = useState(null);
+  const [loading, setLoading] = useState(!!id);
 
   useEffect(() => {
     if (id) {
+      setLoading(true);
       const fetchCategory = async () => {
         try {
           const { data } = await http.get(`/categories/${id}`);
           setCategory(data.category);
-          console.log("Data ", data.category);
         } catch {
           setCategory(null);
+        } finally {
+          setLoading(false);
         }
       };
       fetchCategory();
     }
   }, [id]);
 
-  const title = id ? category?.title || "Loading..." : "Categories";
+  const title = id
+    ? loading
+      ? "Loading..."
+      : category?.title || "Category"
+    : "Categories";
   const items = id
     ? [
         { path: "/", label: "Main Page" },
@@ -36,7 +44,15 @@ function CategoriesPage() {
     <div className="container">
       <BreadcrumbsNav items={items} />
       <h1>{title}</h1>
-      {id ? <p>Loading...</p> : <CategoriesSection />}
+      {id ? (
+        loading ? (
+          <p>Loading...</p>
+        ) : (
+          <ProductsSection categoryId={Number(id)} />
+        )
+      ) : (
+        <CategoriesSection />
+      )}
     </div>
   );
 }

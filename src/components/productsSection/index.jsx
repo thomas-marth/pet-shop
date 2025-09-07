@@ -17,6 +17,7 @@ const ProductsSection = ({
   limit,
   sortByDiscount = false,
   discount = false,
+  categoryId,
 }) => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.products);
@@ -28,15 +29,17 @@ const ProductsSection = ({
     }
   }, [dispatch, items.length]);
 
-  let products = items.map((p) => {
-    const hasDiscount = p.discont_price && p.discont_price < p.price;
-    return {
-      ...p,
-      discount: hasDiscount
-        ? Math.round(((p.price - p.discont_price) / p.price) * 100)
-        : null,
-    };
-  });
+  let products = items
+    .filter((p) => (categoryId ? p.categoryId === Number(categoryId) : true))
+    .map((p) => {
+      const hasDiscount = p.discont_price && p.discont_price < p.price;
+      return {
+        ...p,
+        discount: hasDiscount
+          ? Math.round(((p.price - p.discont_price) / p.price) * 100)
+          : null,
+      };
+    });
 
   if (discount) {
     products = products.filter((p) => p.discount !== null);
