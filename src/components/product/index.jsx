@@ -140,28 +140,6 @@ const Product = ({ product }) => {
           )}
         </Box>
         <Box className={`${styles.controls} ${styles.mui}`}>
-          {/* <ButtonGroup
-            variant="outlined"
-            sx={{
-              borderColor: "#ddd",
-              borderRadius: "6px",
-              "& .MuiButton-root": {
-                maxWidth: "200px",
-                height: "58px",
-                px: 3.34,
-                fontSize: "20px",
-                color: "#282828",
-                lineHeight: 1,
-                borderColor: "#ddd",
-              },
-              "& .MuiButtonGroup-grouped:not(:last-of-type)": {
-                borderColor: "#ddd",
-              },
-              "& .MuiButtonGroup-grouped:not(:first-of-type)": {
-                borderColor: "#ddd",
-              },
-            }}
-          > */}
           <Box>
             <Button
               className={`${styles.quantityMinus} ${styles.mui}`}
@@ -182,20 +160,10 @@ const Product = ({ product }) => {
               <img src={plusIcon} alt="Button plus " />
             </Button>
           </Box>
-          {/* </ButtonGroup> */}
           <Button
             variant="contained"
             className={`${styles.addButton} ${styles.mui}`}
             onClick={handleAdd}
-            sx={{
-              fontFamily: "Montserrat",
-              fontSize: "20px",
-              fontWeight: 600,
-              textTransform: "none",
-              lineHeight: 1.3,
-              backgroundColor: "#0D50FF",
-              "&:hover": { backgroundColor: "#000" },
-            }}
           >
             Add to cart
           </Button>
@@ -218,39 +186,15 @@ const Product = ({ product }) => {
         {product.description?.length > 250 &&
           (showFull ? (
             <Button
-              className={`${styles.readMore} ${styles.mui}`}
+              className={`${styles.hideBtn} ${styles.mui}`}
               onClick={() => setShowFull(false)}
-              sx={{
-                background: "none",
-                border: "none",
-                color: "#0d50ff",
-                fontSize: "20px",
-                fontWeight: 500,
-                textAlign: "left",
-                marginBottom: "16px",
-                textTransform: "none",
-                padding: 0,
-                minWidth: "auto",
-              }}
             >
               Hide
             </Button>
           ) : (
             <Button
-              className={`${styles.readMore} ${styles.mui}`}
+              className={`${styles.readMoreBtn} ${styles.mui}`}
               onClick={() => setShowFull(true)}
-              sx={{
-                background: "none",
-                border: "none",
-                color: "#0d50ff",
-                fontSize: "20px",
-                fontWeight: 500,
-                textAlign: "left",
-                marginBottom: "16px",
-                textTransform: "none",
-                padding: 0,
-                minWidth: "auto",
-              }}
             >
               Read more
             </Button>

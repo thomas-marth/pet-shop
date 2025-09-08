@@ -15,22 +15,10 @@ function CartPage() {
         Looks like you have no items in your basket currently.
       </p>
       <Button
+        className={`${styles.continueShoppingBtn} ${styles.mui}`}
         component={NavLink}
         to="/"
         variant="contained"
-        sx={{
-          fontFamily: "Montserrat",
-          fontSize: "20px",
-          fontWeight: 600,
-          textTransform: "none",
-          lineHeight: 1.3,
-          backgroundColor: "#0D50FF",
-          marginBottom: "80px",
-          padding: "16px 56px",
-          "&:hover": {
-            backgroundColor: "#000",
-          },
-        }}
       >
         Continue Shopping
       </Button>

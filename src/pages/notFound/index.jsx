@@ -19,21 +19,10 @@ function NotFoundPage() {
           to the homepage.
         </p>
         <Button
+          className={`${styles.goHomeBtn} ${styles.mui}`}
           component={NavLink}
           to="/"
           variant="contained"
-          sx={{
-            fontFamily: "Montserrat",
-            fontSize: "20px",
-            fontWeight: 600,
-            textTransform: "none",
-            lineHeight: 1.3,
-            backgroundColor: "#0D50FF",
-            padding: "16px 56px",
-            "&:hover": {
-              backgroundColor: "#000",
-            },
-          }}
         >
           Go Home
         </Button>
