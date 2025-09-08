@@ -3,6 +3,7 @@
   grid-template-columns: 200px 548px 548px;
   grid-template-areas: "left image info";
   gap: 32px;
+  width: 100%;
 }
 
 .left {

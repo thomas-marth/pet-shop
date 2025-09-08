@@ -48,94 +48,86 @@ const Product = ({ product }) => {
   };
 
   return (
-    <div className="container">
-      <section
-        className={styles.wrapper}
-        style={{ height: showFull ? "auto" : "572px" }}
-      >
-        <div className={styles.left}>
-          {related.map((p) => {
-            const rSrc = p.image?.startsWith("http")
-              ? p.image
-              : `${CONFIG.API_URL}/${p.image}`;
-            return (
-              <NavLink
-                key={p.id}
-                to={`/products/${p.id}`}
-                className={styles.thumb}
-              >
-                <img src={rSrc} alt={p.title} />
-              </NavLink>
-            );
-          })}
-        </div>
-        {/* <div className={styles.imageWrap}> */}
+    <section
+      className={styles.wrapper}
+      style={{ height: showFull ? "auto" : "572px" }}
+    >
+      <div className={styles.left}>
+        {related.map((p) => {
+          const rSrc = p.image?.startsWith("http")
+            ? p.image
+            : `${CONFIG.API_URL}/${p.image}`;
+          return (
+            <NavLink
+              key={p.id}
+              to={`/products/${p.id}`}
+              className={styles.thumb}
+            >
+              <img src={rSrc} alt={p.title} />
+            </NavLink>
+          );
+        })}
+      </div>
+      <div className={styles.imageWrap}>
         <img src={imgSrc} alt={product.title} className={styles.mainImage} />
-        {/* </div> */}
-        <div className={styles.info}>
-          <h1 className={styles.title}>{product.title}</h1>
-          <div className={styles.prices}>
-            <span className={styles.newPrice}>
-              ${discount ? product.discont_price : product.price}
-            </span>
-            {discount && (
-              <span className={styles.oldPrice}>${product.price}</span>
-            )}
-            {discount && <span className={styles.badge}>-{discount}%</span>}
-          </div>
-          <div className={styles.controls}>
-            <div className={styles.counter}>
-              <button
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className={styles.countBtn}
-              >
-                -
-              </button>
-              <span className={styles.countValue}>{quantity}</span>
-              <button
-                onClick={() => setQuantity(quantity + 1)}
-                className={styles.countBtn}
-              >
-                +
-              </button>
-            </div>
-            <Button
-              variant="contained"
-              className={styles.addButton}
-              onClick={handleAdd}
-              sx={{
-                fontFamily: "Montserrat",
-                fontSize: "20px",
-                fontWeight: 600,
-                textTransform: "none",
-                lineHeight: 1.3,
-                backgroundColor: "#0D50FF",
-                "&:hover": { backgroundColor: "#000" },
-              }}
-            >
-              Add to cart
-            </Button>
-          </div>
-          <h3 className={styles.descTitle}>Description</h3>
-          <p
-            className={`${styles.description} ${
-              showFull ? styles.expanded : ""
-            }`}
-          >
-            {product.description}
-          </p>
-          {!showFull && product.description?.length > 250 && (
-            <button
-              className={styles.readMore}
-              onClick={() => setShowFull(true)}
-            >
-              Read more
-            </button>
+      </div>
+      <div className={styles.info}>
+        <h1 className={styles.title}>{product.title}</h1>
+        <div className={styles.prices}>
+          <span className={styles.newPrice}>
+            ${discount ? product.discont_price : product.price}
+          </span>
+          {discount && (
+            <span className={styles.oldPrice}>${product.price}</span>
           )}
+          {discount && <span className={styles.badge}>-{discount}%</span>}
         </div>
-      </section>
-    </div>
+        <div className={styles.controls}>
+          <div className={styles.counter}>
+            <button
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              className={styles.countBtn}
+            >
+              -
+            </button>
+            <span className={styles.countValue}>{quantity}</span>
+            <button
+              onClick={() => setQuantity(quantity + 1)}
+              className={styles.countBtn}
+            >
+              +
+            </button>
+          </div>
+          <Button
+            variant="contained"
+            className={styles.addButton}
+            onClick={handleAdd}
+            sx={{
+              fontFamily: "Montserrat",
+              fontSize: "20px",
+              fontWeight: 600,
+              textTransform: "none",
+              lineHeight: 1.3,
+              backgroundColor: "#0D50FF",
+              "&:hover": { backgroundColor: "#000" },
+            }}
+          >
+            Add to cart
+          </Button>
+        </div>
+        <h3 className={styles.descTitle}>Description</h3>
+        <p
+          className={`${styles.description} ${showFull ? styles.expanded : ""}`}
+        >
+          {product.description}
+        </p>
+        {!showFull && product.description?.length > 250 && (
+          <button className={styles.readMore} onClick={() => setShowFull(true)}>
+            Read more
+          </button>
+        )}
+      </div>
+    </section>
   );
 };
-
 export default Product;
