@@ -5,6 +5,8 @@ import { Box, Typography, ButtonGroup, Button } from "@mui/material";
 import { CONFIG } from "@/shared/config";
 import { fetchProducts } from "@/redux/slices/productSlice";
 import { addToCart } from "@/redux/slices/cartSlice";
+import minusIcon from "../../assets/icons/minus.svg";
+import plusIcon from "../../assets/icons/plus.svg";
 import styles from "./styles.module.css";
 
 const Product = ({ product }) => {
@@ -121,25 +123,34 @@ const Product = ({ product }) => {
             ${discount ? product.discont_price : product.price}
           </Typography>
           {discount && (
-            <Typography
-              component="span"
-              className={`${styles.badge} ${styles.mui}`}
-            >
-              -{discount}%
-            </Typography>
+            <>
+              <Typography
+                component="span"
+                className={`${styles.oldPrice} ${styles.mui}`}
+              >
+                ${product.price}
+              </Typography>
+              <Typography
+                component="span"
+                className={`${styles.badge} ${styles.mui}`}
+              >
+                -{discount}%
+              </Typography>
+            </>
           )}
         </Box>
         <Box className={`${styles.controls} ${styles.mui}`}>
-          <ButtonGroup
+          {/* <ButtonGroup
             variant="outlined"
             sx={{
               borderColor: "#ddd",
               borderRadius: "6px",
               "& .MuiButton-root": {
-                minWidth: "40px",
-                height: "40px",
-                px: 0,
-                fontSize: "24px",
+                maxWidth: "200px",
+                height: "58px",
+                px: 3.34,
+                fontSize: "20px",
+                color: "#282828",
                 lineHeight: 1,
                 borderColor: "#ddd",
               },
@@ -150,18 +161,29 @@ const Product = ({ product }) => {
                 borderColor: "#ddd",
               },
             }}
-          >
-            <Button onClick={() => setQuantity(Math.max(1, quantity - 1))}>
-              -
+          > */}
+          <Box className={`${styles.counterContainer} ${styles.mui}`}>
+            <Button
+              className={`${styles.quantityMinus} ${styles.mui} ${styles.mui1}`}
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+            >
+              <img src={minusIcon} alt="Button minus " />
             </Button>
             <Button
+              className={`${styles.quantityCounter} ${styles.mui}`}
               disabled
               sx={{ color: "#282828", fontSize: "20px", fontWeight: 500 }}
             >
               {quantity}
             </Button>
-            <Button onClick={() => setQuantity(quantity + 1)}>+</Button>
-          </ButtonGroup>
+            <Button
+              className={`${styles.quantityPlus} ${styles.mui} ${styles.mui1}`}
+              onClick={() => setQuantity(quantity + 1)}
+            >
+              <img src={plusIcon} alt="Button plus " />
+            </Button>
+          </Box>
+          {/* </ButtonGroup> */}
           <Button
             variant="contained"
             className={`${styles.addButton} ${styles.mui}`}
