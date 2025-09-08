@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "@mui/material";
+import { Box, Typography, ButtonGroup, Button } from "@mui/material";
 import { CONFIG } from "@/shared/config";
 import { fetchProducts } from "@/redux/slices/productSlice";
 import { addToCart } from "@/redux/slices/cartSlice";
@@ -48,11 +48,12 @@ const Product = ({ product }) => {
   };
 
   return (
-    <section
+    <Box
+      component="section"
       className={styles.wrapper}
-      style={{ height: showFull ? "auto" : "572px" }}
+      sx={{ height: showFull ? "auto" : "572px" }}
     >
-      <div className={styles.left}>
+      <Box className={styles.left}>
         {related.map((p) => {
           const rSrc = p.image?.startsWith("http")
             ? p.image
@@ -67,37 +68,57 @@ const Product = ({ product }) => {
             </NavLink>
           );
         })}
-      </div>
-      <div className={styles.imageWrap}>
+      </Box>
+      <Box className={styles.imageWrap}>
         <img src={imgSrc} alt={product.title} className={styles.mainImage} />
-      </div>
-      <div className={styles.info}>
-        <h1 className={styles.title}>{product.title}</h1>
-        <div className={styles.prices}>
-          <span className={styles.newPrice}>
+      </Box>
+      <Box className={styles.info}>
+        <Typography component="h1" className={styles.title}>
+          {product.title}
+        </Typography>
+        <Box className={styles.prices}>
+          <Typography component="span" className={styles.newPrice}>
             ${discount ? product.discont_price : product.price}
-          </span>
+          </Typography>
           {discount && (
-            <span className={styles.oldPrice}>${product.price}</span>
+            <Typography component="span" className={styles.badge}>
+              -{discount}%
+            </Typography>
           )}
-          {discount && <span className={styles.badge}>-{discount}%</span>}
-        </div>
-        <div className={styles.controls}>
-          <div className={styles.counter}>
-            <button
-              onClick={() => setQuantity(Math.max(1, quantity - 1))}
-              className={styles.countBtn}
-            >
+        </Box>
+        <Box className={styles.controls}>
+          <ButtonGroup
+            variant="outlined"
+            sx={{
+              borderColor: "#ddd",
+              borderRadius: "6px",
+              "& .MuiButton-root": {
+                minWidth: "40px",
+                height: "40px",
+                px: 0,
+                fontSize: "24px",
+                lineHeight: 1,
+                borderColor: "#ddd",
+              },
+              "& .MuiButtonGroup-grouped:not(:last-of-type)": {
+                borderColor: "#ddd",
+              },
+              "& .MuiButtonGroup-grouped:not(:first-of-type)": {
+                borderColor: "#ddd",
+              },
+            }}
+          >
+            <Button onClick={() => setQuantity(Math.max(1, quantity - 1))}>
               -
-            </button>
-            <span className={styles.countValue}>{quantity}</span>
-            <button
-              onClick={() => setQuantity(quantity + 1)}
-              className={styles.countBtn}
+            </Button>
+            <Button
+              disabled
+              sx={{ color: "#282828", fontSize: "20px", fontWeight: 500 }}
             >
-              +
-            </button>
-          </div>
+              {quantity}
+            </Button>
+            <Button onClick={() => setQuantity(quantity + 1)}>+</Button>
+          </ButtonGroup>
           <Button
             variant="contained"
             className={styles.addButton}
@@ -114,20 +135,58 @@ const Product = ({ product }) => {
           >
             Add to cart
           </Button>
-        </div>
-        <h3 className={styles.descTitle}>Description</h3>
-        <p
+        </Box>
+        <Typography component="h3" className={styles.descTitle}>
+          Description
+        </Typography>
+        <Typography
+          component="p"
           className={`${styles.description} ${showFull ? styles.expanded : ""}`}
         >
           {product.description}
-        </p>
-        {!showFull && product.description?.length > 250 && (
-          <button className={styles.readMore} onClick={() => setShowFull(true)}>
-            Read more
-          </button>
-        )}
-      </div>
-    </section>
+        </Typography>
+        {product.description?.length > 250 &&
+          (showFull ? (
+            <Button
+              className={styles.readMore}
+              onClick={() => setShowFull(false)}
+              sx={{
+                background: "none",
+                border: "none",
+                color: "#0d50ff",
+                fontSize: "20px",
+                fontWeight: 500,
+                textAlign: "left",
+                marginBottom: "16px",
+                textTransform: "none",
+                padding: 0,
+                minWidth: "auto",
+              }}
+            >
+              Hide
+            </Button>
+          ) : (
+            <Button
+              className={styles.readMore}
+              onClick={() => setShowFull(true)}
+              sx={{
+                background: "none",
+                border: "none",
+                color: "#0d50ff",
+                fontSize: "20px",
+                fontWeight: 500,
+                textAlign: "left",
+                marginBottom: "16px",
+                textTransform: "none",
+                padding: 0,
+                minWidth: "auto",
+              }}
+            >
+              Read more
+            </Button>
+          ))}
+      </Box>
+    </Box>
   );
 };
 export default Product;
