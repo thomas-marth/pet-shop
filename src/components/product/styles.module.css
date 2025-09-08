@@ -1,0 +1,186 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 200px 548px 548px;
+  grid-template-areas: "left image info";
+  gap: 32px;
+}
+
+.left {
+  grid-area: left;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.thumb {
+  width: 200px;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.thumb:hover img {
+  transform: scale(1.1);
+}
+
+.imageWrap {
+  grid-area: image;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 548px;
+  height: 572px;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  color: #282828;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 1.2px;
+  margin-bottom: 16px;
+}
+
+.prices {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.newPrice {
+  color: #282828;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.oldPrice {
+  color: #8b8b8b;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: line-through;
+}
+
+.badge {
+  color: #fff;
+  background-color: #0d50ff;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.description {
+  color: #282828;
+  font-size: 20px;
+  line-height: 1.3;
+  max-height: 120px;
+  overflow: hidden;
+}
+
+.expanded {
+  max-height: none;
+}
+
+.readMore {
+  background: none;
+  border: none;
+  color: #0d50ff;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.countBtn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.countValue {
+  padding: 0 12px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.addButton {
+  font-family: "Montserrat";
+  padding: 16px 32px;
+  border-radius: 6px;
+  text-transform: none;
+}
+
+.descTitle {
+  color: #282828;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "left"
+      "info";
+    height: auto;
+  }
+
+  .imageWrap {
+    width: 100%;
+    height: auto;
+  }
+
+  .left {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .mainImage {
+    height: auto;
+  }
+}

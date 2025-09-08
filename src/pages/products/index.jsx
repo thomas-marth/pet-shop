@@ -4,6 +4,7 @@ import { http } from "@/shared/http";
 import styles from "./styles.module.css";
 import BreadcrumbsNav from "../../ui/breadcrumbs";
 import ProductsList from "../../components/productsList";
+import Product from "../../components/product";
 
 function ProductsPage() {
   const { id } = useParams();
@@ -55,8 +56,14 @@ function ProductsPage() {
   return (
     <div className={styles.container}>
       <BreadcrumbsNav items={items} />
-      <h1>{title}</h1>
-      {!id && <ProductsList />}
+      {id ? (
+        product ? <Product product={product} /> : <p>Loading...</p>
+      ) : (
+        <>
+          <h1>{title}</h1>
+          <ProductsList />
+        </>
+      )}
     </div>
   );
 }
