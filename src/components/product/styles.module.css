@@ -1,6 +1,6 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 200px 548px 548px;
+  grid-template-columns: 200px 1fr 1fr;
   grid-template-areas: "left image info";
   gap: 32px;
   width: 100%;
@@ -37,8 +37,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 548px;
-  height: 572px;
+  width: 100%;
+  max-width: 548px;
+  aspect-ratio: 548 / 552;
 }
 
 .mainImage {
@@ -51,6 +52,8 @@
   grid-area: info;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 548px;
 }
 
 .title {
