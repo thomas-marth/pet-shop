@@ -162,22 +162,21 @@ const Product = ({ product }) => {
               },
             }}
           > */}
-          <Box className={`${styles.counterContainer} ${styles.mui}`}>
+          <Box>
             <Button
-              className={`${styles.quantityMinus} ${styles.mui} ${styles.mui1}`}
+              className={`${styles.quantityMinus} ${styles.mui}`}
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
             >
               <img src={minusIcon} alt="Button minus " />
             </Button>
             <Button
-              className={`${styles.quantityCounter} ${styles.mui}`}
+              className={`${styles.quantityCounter} ${styles.mui} ${styles.styleСlash}`}
               disabled
-              sx={{ color: "#282828", fontSize: "20px", fontWeight: 500 }}
             >
               {quantity}
             </Button>
             <Button
-              className={`${styles.quantityPlus} ${styles.mui} ${styles.mui1}`}
+              className={`${styles.quantityPlus} ${styles.mui}`}
               onClick={() => setQuantity(quantity + 1)}
             >
               <img src={plusIcon} alt="Button plus " />
