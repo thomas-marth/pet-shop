@@ -164,7 +164,20 @@
   margin-bottom: 8px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
+  .wrapper {
+    grid-template-columns: 200px 1fr;
+    grid-template-areas:
+      "left image"
+      "info info";
+  }
+
+  .info {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
   .wrapper {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -177,11 +190,13 @@
   .imageWrap {
     width: 100%;
     height: auto;
+    margin: 0 auto;
   }
 
   .left {
     flex-direction: row;
     justify-content: center;
+    margin: 0 auto;
   }
 
   .mainImage {

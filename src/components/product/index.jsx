@@ -53,7 +53,7 @@ const Product = ({ product }) => {
       className={styles.wrapper}
       sx={{
         height: showFull ? "auto" : "572px",
-        "@media (max-width: 1024px)": { height: "auto" },
+        "@media (max-width: 1200px)": { height: "auto" },
       }}
     >
       {/* Left side */}
