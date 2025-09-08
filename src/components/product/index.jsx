@@ -9,6 +9,8 @@ import minusIcon from "../../assets/icons/minus.svg";
 import plusIcon from "../../assets/icons/plus.svg";
 import styles from "./styles.module.css";
 
+const MAX_DESCRIPTION_LENGTH = 470;
+
 const Product = ({ product }) => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.products);
@@ -45,6 +47,7 @@ const Product = ({ product }) => {
   const imgSrc = product.image?.startsWith("http")
     ? product.image
     : `${CONFIG.API_URL}/${product.image}`;
+  const description = product.description || "";
 
   const handleAdd = () => {
     dispatch(addToCart({ product, quantity }));
@@ -181,9 +184,11 @@ const Product = ({ product }) => {
             showFull ? styles.expanded : ""
           }`}
         >
-          {product.description}
+          {showFull || description.length <= MAX_DESCRIPTION_LENGTH
+            ? description
+            : `${description.slice(0, MAX_DESCRIPTION_LENGTH).trimEnd()}...`}
         </Typography>
-        {product.description?.length > 250 &&
+        {description.length > MAX_DESCRIPTION_LENGTH &&
           (showFull ? (
             <Button
               className={`${styles.hideBtn} ${styles.mui}`}
