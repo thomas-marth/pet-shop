@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Typography, ButtonGroup, Button } from "@mui/material";
@@ -13,6 +13,7 @@ const Product = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const [showFull, setShowFull] = useState(false);
   const [related, setRelated] = useState([]);
+  const imgRef = useRef(null);
 
   useEffect(() => {
     if (!items.length) {
@@ -47,6 +48,22 @@ const Product = ({ product }) => {
     dispatch(addToCart({ product, quantity }));
   };
 
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } =
+      e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    if (imgRef.current) {
+      imgRef.current.style.transformOrigin = `${x}% ${y}%`;
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (imgRef.current) {
+      imgRef.current.style.transformOrigin = "center";
+    }
+  };
+
   return (
     <Box
       component="section"
@@ -77,27 +94,42 @@ const Product = ({ product }) => {
 
       {/* Central side (Main Image) */}
 
-      <Box className={styles.imageWrap}>
-        <img src={imgSrc} alt={product.title} className={styles.mainImage} />
+      <Box
+        className={`${styles.imageWrap} ${styles.mui}`}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        <img
+          ref={imgRef}
+          src={imgSrc}
+          alt={product.title}
+          className={styles.mainImage}
+        />
       </Box>
 
       {/* Right side */}
 
-      <Box className={styles.info}>
-        <Typography component="h1" className={styles.title}>
+      <Box className={`${styles.info} ${styles.mui}`}>
+        <Typography component="h1" className={`${styles.title} ${styles.mui}`}>
           {product.title}
         </Typography>
-        <Box className={styles.prices}>
-          <Typography component="span" className={styles.newPrice}>
+        <Box className={`${styles.prices} ${styles.mui}`}>
+          <Typography
+            component="span"
+            className={`${styles.newPrice} ${styles.mui}`}
+          >
             ${discount ? product.discont_price : product.price}
           </Typography>
           {discount && (
-            <Typography component="span" className={styles.badge}>
+            <Typography
+              component="span"
+              className={`${styles.badge} ${styles.mui}`}
+            >
               -{discount}%
             </Typography>
           )}
         </Box>
-        <Box className={styles.controls}>
+        <Box className={`${styles.controls} ${styles.mui}`}>
           <ButtonGroup
             variant="outlined"
             sx={{
@@ -132,7 +164,7 @@ const Product = ({ product }) => {
           </ButtonGroup>
           <Button
             variant="contained"
-            className={styles.addButton}
+            className={`${styles.addButton} ${styles.mui}`}
             onClick={handleAdd}
             sx={{
               fontFamily: "Montserrat",
@@ -147,19 +179,25 @@ const Product = ({ product }) => {
             Add to cart
           </Button>
         </Box>
-        <Typography component="h3" className={styles.descTitle}>
+
+        <Typography
+          component="h3"
+          className={`${styles.descTitle} ${styles.mui}`}
+        >
           Description
         </Typography>
         <Typography
           component="p"
-          className={`${styles.description} ${showFull ? styles.expanded : ""}`}
+          className={`${styles.description} ${styles.mui} ${
+            showFull ? styles.expanded : ""
+          }`}
         >
           {product.description}
         </Typography>
         {product.description?.length > 250 &&
           (showFull ? (
             <Button
-              className={styles.readMore}
+              className={`${styles.readMore} ${styles.mui}`}
               onClick={() => setShowFull(false)}
               sx={{
                 background: "none",
@@ -178,7 +216,7 @@ const Product = ({ product }) => {
             </Button>
           ) : (
             <Button
-              className={styles.readMore}
+              className={`${styles.readMore} ${styles.mui}`}
               onClick={() => setShowFull(true)}
               sx={{
                 background: "none",

@@ -18,7 +18,7 @@
   height: 180px;
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #ebebeb;
 }
 
 .thumb img {
@@ -32,23 +32,31 @@
   transform: scale(1.1);
 }
 
-.imageWrap {
+.imageWrap.mui {
   grid-area: image;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   max-width: 548px;
-  aspect-ratio: 548 / 552;
+  border-radius: 12px;
+  aspect-ratio: 548 / 572;
+  overflow: hidden;
 }
 
 .mainImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
 }
 
-.info {
+.imageWrap.mui:hover .mainImage {
+  transform: scale(2);
+}
+
+.info.mui {
   grid-area: info;
   display: flex;
   flex-direction: column;
@@ -56,30 +64,33 @@
   max-width: 548px;
 }
 
-.title {
+.title.mui {
+  font-family: "Montserrat";
   color: #282828;
   font-size: 40px;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: 1.2px;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 }
 
-.prices {
+.prices.mui {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-bottom: 16px;
 }
 
-.newPrice {
+.newPrice.mui {
+  font-family: "Montserrat";
   color: #282828;
   font-size: 40px;
   font-weight: 600;
   line-height: 1.1;
 }
 
-.oldPrice {
+.oldPrice.mui {
+  font-family: "Montserrat";
   color: #8b8b8b;
   font-size: 20px;
   font-weight: 500;
@@ -87,7 +98,7 @@
   text-decoration: line-through;
 }
 
-.badge {
+.badge.mui {
   color: #fff;
   background-color: #0d50ff;
   font-size: 20px;
@@ -97,19 +108,22 @@
   border-radius: 6px;
 }
 
-.description {
+.description.mui {
+  font-family: "Montserrat";
   color: #282828;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.3;
   max-height: 120px;
+  /* white-space: nowrap; */
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.expanded {
+.expanded.mui {
   max-height: none;
 }
 
-.readMore {
+.readMore.mui {
   background: none;
   border: none;
   color: #0d50ff;
@@ -120,21 +134,21 @@
   margin-bottom: 16px;
 }
 
-.controls {
+.controls.mui {
   display: flex;
   align-items: center;
   gap: 24px;
   margin-bottom: 24px;
 }
 
-.counter {
+.counter.mui {
   display: flex;
   align-items: center;
   border: 1px solid #ddd;
   border-radius: 6px;
 }
 
-.countBtn {
+.countBtn.mui {
   width: 40px;
   height: 40px;
   border: none;
@@ -143,20 +157,20 @@
   cursor: pointer;
 }
 
-.countValue {
+.countValue.mui {
   padding: 0 12px;
   font-size: 20px;
   font-weight: 500;
 }
 
-.addButton {
+.addButton.mui {
   font-family: "Montserrat";
   padding: 16px 32px;
   border-radius: 6px;
   text-transform: none;
 }
 
-.descTitle {
+.descTitle.mui {
   color: #282828;
   font-size: 24px;
   font-weight: 600;
