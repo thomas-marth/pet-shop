@@ -51,8 +51,13 @@ const Product = ({ product }) => {
     <Box
       component="section"
       className={styles.wrapper}
-      sx={{ height: showFull ? "auto" : "572px" }}
+      sx={{
+        height: showFull ? "auto" : "572px",
+        "@media (max-width: 1024px)": { height: "auto" },
+      }}
     >
+      {/* Left side */}
+
       <Box className={styles.left}>
         {related.map((p) => {
           const rSrc = p.image?.startsWith("http")
@@ -69,9 +74,15 @@ const Product = ({ product }) => {
           );
         })}
       </Box>
+
+      {/* Central side (Main Image) */}
+
       <Box className={styles.imageWrap}>
         <img src={imgSrc} alt={product.title} className={styles.mainImage} />
       </Box>
+
+      {/* Right side */}
+
       <Box className={styles.info}>
         <Typography component="h1" className={styles.title}>
           {product.title}
