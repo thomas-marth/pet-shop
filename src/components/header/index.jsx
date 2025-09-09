@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import Badge from "@mui/material/Badge";
 import ShoppingBag from "../../assets/icons/Vector.png";
 import Logo from "../../assets/icons/logo.svg";
@@ -9,6 +10,30 @@ const Header = () => {
   const itemCount = useSelector((state) =>
     state.cart.items.reduce((sum, item) => sum + item.quantity, 0)
   );
+
+  const [animateCart, setAnimateCart] = useState(false);
+
+  useEffect(() => {
+    let intervalId;
+    let timeoutId;
+
+    const triggerAnimation = () => {
+      setAnimateCart(true);
+      timeoutId = setTimeout(() => setAnimateCart(false), 500);
+    };
+
+    if (itemCount > 0) {
+      triggerAnimation();
+      intervalId = setInterval(triggerAnimation, 7000);
+    } else {
+      setAnimateCart(false);
+    }
+
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(timeoutId);
+    };
+  }, [itemCount]);
 
   return (
     <header className={styles.header}>
@@ -76,7 +101,13 @@ const Header = () => {
               },
             }}
           >
-            <img className={styles.cart} src={ShoppingBag} alt="Shopping Bag" />
+            <img
+              className={`${styles.cart} ${
+                animateCart ? styles.cartAnimated : ""
+              }`}
+              src={ShoppingBag}
+              alt="Shopping Bag"
+            />
           </Badge>
         </NavLink>
       </div>
