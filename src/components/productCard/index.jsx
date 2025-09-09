@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { CONFIG } from "@/shared/config";
+import { addToCart } from "@/redux/slices/cartSlice";
+import styles from "./styles.module.css";
 import {
   Button,
   Card,
@@ -8,13 +11,18 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import styles from "./styles.module.css";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const imgSrc = product.image?.startsWith("http")
     ? product.image
     : `${CONFIG.API_URL}/${product.image}`;
+
+  const handleAdd = (event) => {
+    event.stopPropagation();
+    dispatch(addToCart({ product, quantity: 1 }));
+  };
 
   return (
     <li>
@@ -35,16 +43,13 @@ const ProductCard = ({ product }) => {
           <Button
             variant="contained"
             className={`${styles.addButton} ${styles.mui}`}
-            onClick={(e) => e.stopPropagation()}
+            onClick={handleAdd}
           >
             Add to cart
           </Button>
         </Box>
         <CardContent className={`${styles.CardContent} ${styles.mui}`}>
-          <Typography
-            component="h3"
-            className={`${styles.name} ${styles.mui}`}
-          >
+          <Typography component="h3" className={`${styles.name} ${styles.mui}`}>
             {product.title}
           </Typography>
           <div className={styles.prices}>
