@@ -82,7 +82,7 @@ const Product = ({ product }) => {
     >
       {/* Left side */}
 
-      <Box className={styles.left}>
+      <Box className={`${styles.left} ${styles.mui}`}>
         {related.map((p) => {
           const rSrc = p.image?.startsWith("http")
             ? p.image

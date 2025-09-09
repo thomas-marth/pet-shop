@@ -19,8 +19,8 @@ const CategoriesList = ({ limit }) => {
   return (
     <section className={styles.section}>
       <ul className={styles.list}>
-        {categories.map((cat) => (
-          <CategoryCard key={cat.id} category={cat} />
+        {categories.map((category) => (
+          <CategoryCard key={category.id} category={category} />
         ))}
       </ul>
     </section>

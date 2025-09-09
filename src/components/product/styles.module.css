@@ -1,22 +1,23 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 200px 1fr 1fr;
+  grid-template-columns: clamp(120px, 15vw, 200px) 548px 1fr;
   grid-template-areas: "left image info";
   gap: 32px;
   width: 100%;
   margin-bottom: 82px;
 }
 
-.left {
+.left.mui {
   grid-area: left;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
 }
 
 .thumb {
-  width: 200px;
-  height: 180px;
+  width: 100%;
+  aspect-ratio: 200 / 180;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid #ebebeb;
@@ -254,7 +255,7 @@
 
 @media (max-width: 1200px) {
   .wrapper {
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: clamp(120px, 20vw, 200px) 1fr;
     grid-template-areas:
       "left image"
       "info info";
