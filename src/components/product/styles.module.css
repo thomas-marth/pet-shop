@@ -83,6 +83,12 @@
   margin-bottom: 32px;
 }
 
+.titleMobile.mui {
+  display: none;
+  grid-area: title;
+  margin-bottom: 0;
+}
+
 .prices.mui {
   display: flex;
   align-items: center;
@@ -282,11 +288,22 @@
   .wrapper.mui {
     grid-template-columns: 1fr;
     grid-template-areas:
+      "title"
       "image"
       "left"
       "info";
     height: auto;
     gap: 32px;
+  }
+
+  .titleMobile.mui {
+    display: block;
+    text-align: center;
+    margin-bottom: -10px;
+  }
+
+  .desktopTitle.mui {
+    display: none;
   }
 
   .imageWrap.mui {
@@ -300,15 +317,20 @@
     justify-content: center;
     margin: 0 auto;
     margin-top: -32px;
+    margin-bottom: 32px;
   }
 
   .mainImage {
     height: auto;
   }
 
+  .prices {
+    margin: 0 auto;
+  }
+
   .controls.mui {
     align-items: center;
-    gap: 16px;
+    gap: 24px;
   }
 
   .quantityButtons.mui {
@@ -317,19 +339,20 @@
 
   .quantityMinus.mui,
   .quantityPlus.mui {
-    height: 48px;
-    min-width: 48px;
+    height: 58px;
+    min-width: 58px;
     padding: 12px;
   }
 
   .quantityCounter.mui.styleСlash {
-    width: 70px;
-    height: 48px;
+    width: 120px;
+    height: 58px;
     font-size: 16px;
   }
 
   .addButton.mui {
-    padding: 14px 0;
+    padding: 20px 97px;
     font-size: 16px;
+    width: auto;
   }
 }

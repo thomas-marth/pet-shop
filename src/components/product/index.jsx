@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Typography, ButtonGroup, Button } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { CONFIG } from "@/shared/config";
 import { fetchProducts } from "@/redux/slices/productSlice";
 import { addToCart } from "@/redux/slices/cartSlice";
@@ -80,6 +80,12 @@ const Product = ({ product }) => {
         "@media (max-width: 1200px)": { height: "auto" },
       }}
     >
+      <Typography
+        component="h1"
+        className={`${styles.title} ${styles.titleMobile} ${styles.mui}`}
+      >
+        {product.title}
+      </Typography>
       {/* Left side */}
 
       <Box className={`${styles.left} ${styles.mui}`}>
@@ -117,7 +123,10 @@ const Product = ({ product }) => {
       {/* Right side */}
 
       <Box className={`${styles.info} ${styles.mui}`}>
-        <Typography component="h1" className={`${styles.title} ${styles.mui}`}>
+        <Typography
+          component="h1"
+          className={`${styles.title} ${styles.desktopTitle} ${styles.mui}`}
+        >
           {product.title}
         </Typography>
         <Box className={`${styles.prices} ${styles.mui}`}>
