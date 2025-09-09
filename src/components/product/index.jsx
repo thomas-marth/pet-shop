@@ -5,8 +5,7 @@ import { Box, Typography, Button } from "@mui/material";
 import { CONFIG } from "@/shared/config";
 import { fetchProducts } from "@/redux/slices/productSlice";
 import { addToCart } from "@/redux/slices/cartSlice";
-import minusIcon from "../../assets/icons/minus.svg";
-import plusIcon from "../../assets/icons/plus.svg";
+import QuantitySelector from "../../ui/quantitySelector";
 import styles from "./styles.module.css";
 
 const MAX_DESCRIPTION_LENGTH = 450;
@@ -154,26 +153,11 @@ const Product = ({ product }) => {
           )}
         </Box>
         <Box className={`${styles.controls} ${styles.mui}`}>
-          <Box className={`${styles.quantityButtons} ${styles.mui}`}>
-            <Button
-              className={`${styles.quantityMinus} ${styles.mui}`}
-              onClick={() => setQuantity(Math.max(1, quantity - 1))}
-            >
-              <img src={minusIcon} alt="Button minus " />
-            </Button>
-            <Button
-              className={`${styles.quantityCounter} ${styles.mui} ${styles.styleСlash}`}
-              disabled
-            >
-              {quantity}
-            </Button>
-            <Button
-              className={`${styles.quantityPlus} ${styles.mui}`}
-              onClick={() => setQuantity(quantity + 1)}
-            >
-              <img src={plusIcon} alt="Button plus " />
-            </Button>
-          </Box>
+          <QuantitySelector
+            quantity={quantity}
+            onDecrease={() => setQuantity(Math.max(1, quantity - 1))}
+            onIncrease={() => setQuantity(quantity + 1)}
+          />
           <Button
             variant="contained"
             className={`${styles.addButton} ${styles.mui}`}
