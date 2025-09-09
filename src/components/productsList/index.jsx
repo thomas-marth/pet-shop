@@ -4,12 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "@/redux/slices/productSlice";
 import ProductCard from "../../components/productCard";
 
-const ProductsList = ({
-  limit,
-  sortByDiscount = false,
-  discount = false,
-  categoryId,
-}) => {
+const ProductsList = ({ limit, categoryId, filters = {} }) => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.products);
 
@@ -18,6 +13,8 @@ const ProductsList = ({
       dispatch(fetchProducts());
     }
   }, [dispatch, items.length]);
+
+  const { minPrice, maxPrice, discountOnly, sortBy } = filters;
 
   let products = items
     .filter((p) => (categoryId ? p.categoryId === Number(categoryId) : true))
@@ -28,16 +25,40 @@ const ProductsList = ({
         discount: hasDiscount
           ? Math.round(((p.price - p.discont_price) / p.price) * 100)
           : null,
+        effectivePrice:
+          p.discont_price && p.discont_price < p.price
+            ? p.discont_price
+            : p.price,
       };
     });
 
-  if (discount) {
+  if (discountOnly) {
     products = products.filter((p) => p.discount !== null);
   }
 
-  products = products.sort((a, b) =>
-    sortByDiscount ? (b.discount || 0) - (a.discount || 0) : a.id - b.id
-  );
+  const min = Number(minPrice);
+  if (!Number.isNaN(min) && minPrice !== "") {
+    products = products.filter((p) => p.effectivePrice >= min);
+  }
+
+  const max = Number(maxPrice);
+  if (!Number.isNaN(max) && maxPrice !== "") {
+    products = products.filter((p) => p.effectivePrice <= max);
+  }
+
+  switch (sortBy) {
+    case "priceDesc":
+      products = products.sort((a, b) => b.effectivePrice - a.effectivePrice);
+      break;
+    case "priceAsc":
+      products = products.sort((a, b) => a.effectivePrice - b.effectivePrice);
+      break;
+    case "discountDesc":
+      products = products.sort((a, b) => (b.discount || 0) - (a.discount || 0));
+      break;
+    default:
+      products = products.sort((a, b) => a.id - b.id);
+  }
 
   if (limit) {
     products = products.slice(0, limit);

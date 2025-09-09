@@ -5,11 +5,18 @@ import styles from "./styles.module.css";
 import BreadcrumbsNav from "../../ui/breadcrumbs";
 import ProductsList from "../../components/productsList";
 import Product from "../../components/product";
+import ProductFilter from "../../ui/productFilter";
 
 function ProductsPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [category, setCategory] = useState(null);
+  const [filters, setFilters] = useState({
+    minPrice: "",
+    maxPrice: "",
+    discountOnly: false,
+    sortBy: "default",
+  });
 
   useEffect(() => {
     if (id) {
@@ -57,11 +64,16 @@ function ProductsPage() {
     <div className={styles.container}>
       <BreadcrumbsNav items={items} />
       {id ? (
-        product ? <Product product={product} /> : <p>Loading...</p>
+        product ? (
+          <Product product={product} />
+        ) : (
+          <p>Loading...</p>
+        )
       ) : (
         <>
           <h1>{title}</h1>
-          <ProductsList />
+          <ProductFilter filters={filters} onChange={setFilters} />
+          <ProductsList filters={filters} />
         </>
       )}
     </div>

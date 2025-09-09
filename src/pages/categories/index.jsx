@@ -3,12 +3,19 @@ import { useParams } from "react-router-dom";
 import CategoriesList from "../../components/categoriesList";
 import ProductsList from "../../components/productsList";
 import BreadcrumbsNav from "../../ui/breadcrumbs";
+import ProductFilter from "../../ui/productFilter";
 import { http } from "@/shared/http";
 
 function CategoriesPage() {
   const { id } = useParams();
   const [category, setCategory] = useState(null);
   const [loading, setLoading] = useState(!!id);
+  const [filters, setFilters] = useState({
+    minPrice: "",
+    maxPrice: "",
+    discountOnly: false,
+    sortBy: "default",
+  });
 
   useEffect(() => {
     if (id) {
@@ -49,7 +56,10 @@ function CategoriesPage() {
         loading ? (
           <p>Loading...</p>
         ) : (
-          <ProductsList categoryId={Number(id)} />
+          <>
+            <ProductFilter filters={filters} onChange={setFilters} />
+            <ProductsList categoryId={Number(id)} filters={filters} />
+          </>
         )
       ) : (
         <CategoriesList />

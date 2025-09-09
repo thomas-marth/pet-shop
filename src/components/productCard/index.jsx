@@ -33,7 +33,7 @@ const ProductCard = ({ product }) => {
         {product.discount && (
           <Box className={styles.badge}>-{product.discount}%</Box>
         )}
-        <Box className={styles.mediaWrapper}>
+        <Box className={`${styles.mediaWrapper} ${styles.mui}`}>
           <CardMedia
             component="img"
             image={imgSrc}

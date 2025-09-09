@@ -17,7 +17,10 @@ function HomePage() {
         <CategoriesList limit={4} />
         <DiscountForm />
         <SectionHeading title="Sale" to="/sales" buttonText="All sales" />
-        <ProductsList limit={4} sortByDiscount discount />
+        <ProductsList
+          limit={4}
+          filters={{ discountOnly: true, sortBy: "discountDesc" }}
+        />
       </div>
     </>
   );
