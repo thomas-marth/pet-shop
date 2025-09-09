@@ -53,20 +53,9 @@ const Header = () => {
         {/* Cart icon */}
         <NavLink to="/cart" className={styles.cartLink} aria-label="Cart">
           <Badge
-            className={`${styles.badge} ${styles.mui} ${styles.mui2}`}
+            className={styles.badge}
             badgeContent={itemCount}
             color="primary"
-            sx={{
-              "& .MuiBadge-badge": {
-                color: "#fff",
-                textAlign: "center",
-                fontFamily: "Montserrat",
-                fontSize: "12px",
-                fontWeight: 600,
-                lineHeight: 0.9,
-                padding: "7px",
-              },
-            }}
           >
             <img className={styles.cart} src={ShoppingBag} alt="Shopping Bag" />
           </Badge>

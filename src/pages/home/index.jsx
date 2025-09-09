@@ -20,8 +20,6 @@ function HomePage() {
         <ProductsList limit={4} sortByDiscount discount />
       </div>
     </>
-    // <div className={styles.container}>
-    // </div>
   );
 }
 

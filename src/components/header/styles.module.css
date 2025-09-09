@@ -63,7 +63,7 @@
   animation: bag-wobble 0.4s ease-in-out 1;
 }
 
-.badge.mui.mui2 {
+.badge:global(.MuiBadge-badge) {
   color: #fff;
   text-align: center;
   font-family: "Montserrat";
