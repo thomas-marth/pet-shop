@@ -1,6 +1,9 @@
 .wrapper.mui {
   display: grid;
-  grid-template-columns: 200 1fr 1fr;
+  grid-template-columns: clamp(80px, 14vw, 200px) clamp(520px, 42vw, 548px) minmax(
+      100px,
+      1fr
+    );
   grid-template-areas: "left image info";
   gap: 32px;
   width: 100%;
@@ -121,7 +124,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 32px;
-  gap: 32px;
+  gap: clamp(22px, 2vw, 32px);
 }
 
 .quantityButtons.mui {
@@ -134,7 +137,7 @@
   font-size: 20px;
   font-weight: 600;
   line-height: 1.3;
-  width: 96px;
+  width: clamp(76px, 6vw, 96px);
   height: 58px;
   border: 1px solid #ddd;
   margin-left: -8px;
@@ -161,14 +164,15 @@
 
 .addButton.mui {
   font-family: "Montserrat";
-  font-size: 20px;
+  font-size: clamp(12px, 2vw, 20px);
   font-weight: 600;
-  padding: 16px 97px;
+  padding: 16px clamp(65px, 7vw, 97px);
   border-radius: 6px;
   text-transform: none;
   line-height: 1.3;
   background-color: #0d50ff;
   box-shadow: none;
+  text-wrap: nowrap;
 }
 
 .addButton.mui:hover {
@@ -234,6 +238,12 @@
     margin: 0 auto;
   }
 
+  .thumb {
+    width: clamp(100px, 15vw, 200px);
+    height: clamp(80px, 15vw, 180px);
+    aspect-ratio: 200 / 180;
+  }
+
   .info.mui {
     max-width: none;
   }
@@ -256,7 +266,7 @@
   }
 
   .quantityCounter.mui.styleСlash {
-    width: 80px;
+    width: 100px;
     height: 52px;
     font-size: 18px;
   }
@@ -276,6 +286,7 @@
       "left"
       "info";
     height: auto;
+    gap: 32px;
   }
 
   .imageWrap.mui {
@@ -288,6 +299,7 @@
     flex-direction: row;
     justify-content: center;
     margin: 0 auto;
+    margin-top: -32px;
   }
 
   .mainImage {
