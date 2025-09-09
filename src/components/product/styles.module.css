@@ -15,8 +15,11 @@
 }
 
 .thumb {
-  width: 200px;
-  height: 180px;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  max-height: 180px;
+  aspect-ratio: 200 / 180;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid #ebebeb;
@@ -25,6 +28,8 @@
 .thumb img {
   width: 100%;
   height: 100%;
+  max-width: 200px;
+  max-height: 180px;
   object-fit: cover;
   transition: transform 0.6s ease;
 }
@@ -218,10 +223,18 @@
 
 @media (max-width: 1200px) {
   .wrapper {
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      "left image"
-      "info info";
+      "image info"
+      "left info";
+    height: auto;
+  }
+
+  .left {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
   }
 
   .info {
