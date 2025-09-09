@@ -74,7 +74,7 @@ const Product = ({ product }) => {
   return (
     <Box
       component="section"
-      className={styles.wrapper}
+      className={`${styles.wrapper} ${styles.mui}`}
       sx={{
         height: showFull || !shouldShowButton ? "auto" : "572px",
         "@media (max-width: 1200px)": { height: "auto" },
@@ -145,7 +145,7 @@ const Product = ({ product }) => {
           )}
         </Box>
         <Box className={`${styles.controls} ${styles.mui}`}>
-          <Box className={styles.quantityButtons}>
+          <Box className={`${styles.quantityButtons} ${styles.mui}`}>
             <Button
               className={`${styles.quantityMinus} ${styles.mui}`}
               onClick={() => setQuantity(Math.max(1, quantity - 1))}

@@ -1,13 +1,13 @@
-.wrapper {
+.wrapper.mui {
   display: grid;
-  grid-template-columns: 200px 1fr 1fr;
+  grid-template-columns: 200 1fr 1fr;
   grid-template-areas: "left image info";
   gap: 32px;
   width: 100%;
   margin-bottom: 82px;
 }
 
-.left {
+.left.mui {
   grid-area: left;
   display: flex;
   flex-direction: column;
@@ -124,11 +124,8 @@
   gap: 32px;
 }
 
-.counter {
+.quantityButtons.mui {
   display: flex;
-  align-items: center;
-  border-radius: 6px;
-  margin-left: -7px;
 }
 
 .quantityCounter.mui.styleСlash {
@@ -222,7 +219,7 @@
 }
 
 @media (max-width: 1200px) {
-  .wrapper {
+  .wrapper.mui {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "image info"
@@ -230,20 +227,49 @@
     height: auto;
   }
 
-  .left {
+  .left.mui {
     flex-direction: row;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin: 0 auto;
   }
 
-  .info {
+  .info.mui {
     max-width: none;
+  }
+
+  .controls.mui {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .quantityButtons.mui {
+    width: 100%;
+  }
+
+  .quantityMinus.mui,
+  .quantityPlus.mui {
+    height: 52px;
+    min-width: 52px;
+    padding: 14px;
+  }
+
+  .quantityCounter.mui.styleСlash {
+    width: 80px;
+    height: 52px;
+    font-size: 18px;
+  }
+
+  .addButton.mui {
+    width: 100%;
+    padding: 16px 40px;
+    font-size: 18px;
   }
 }
 
 @media (max-width: 768px) {
-  .wrapper {
+  .wrapper.mui {
     grid-template-columns: 1fr;
     grid-template-areas:
       "image"
@@ -252,13 +278,13 @@
     height: auto;
   }
 
-  .imageWrap {
+  .imageWrap.mui {
     width: 100%;
     height: auto;
     margin: 0 auto;
   }
 
-  .left {
+  .left.mui {
     flex-direction: row;
     justify-content: center;
     margin: 0 auto;
@@ -266,5 +292,32 @@
 
   .mainImage {
     height: auto;
+  }
+
+  .controls.mui {
+    align-items: center;
+    gap: 16px;
+  }
+
+  .quantityButtons.mui {
+    justify-content: center;
+  }
+
+  .quantityMinus.mui,
+  .quantityPlus.mui {
+    height: 48px;
+    min-width: 48px;
+    padding: 12px;
+  }
+
+  .quantityCounter.mui.styleСlash {
+    width: 70px;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .addButton.mui {
+    padding: 14px 0;
+    font-size: 16px;
   }
 }
