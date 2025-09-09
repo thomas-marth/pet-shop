@@ -161,15 +161,20 @@
   font-family: "Montserrat";
   font-size: 20px;
   font-weight: 600;
-  padding: 16px 97px;
+  padding: clamp(12px, 2vw, 16px) clamp(24px, 7vw, 97px);
   border-radius: 6px;
   text-transform: none;
   line-height: 1.3;
   background-color: #0d50ff;
   box-shadow: none;
+  white-space: nowrap;
 }
 
 @media (max-width: 576px) {
+  .prices.mui {
+    justify-content: center;
+  }
+
   .controls.mui {
     flex-direction: column;
     align-items: center;
@@ -195,8 +200,8 @@
 
   .addButton.mui {
     font-size: 18px;
-    padding: 12px 24px;
-    width: 100%;
+    /* padding: 12px 24px;
+    width: 100%; */
   }
 }
 
