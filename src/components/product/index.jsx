@@ -9,7 +9,8 @@ import minusIcon from "../../assets/icons/minus.svg";
 import plusIcon from "../../assets/icons/plus.svg";
 import styles from "./styles.module.css";
 
-const MAX_DESCRIPTION_LENGTH = 470;
+const MAX_DESCRIPTION_LENGTH = 450;
+const MIN_HIDDEN_LENGTH = 150;
 
 const Product = ({ product }) => {
   const dispatch = useDispatch();
@@ -48,7 +49,8 @@ const Product = ({ product }) => {
     ? product.image
     : `${CONFIG.API_URL}/${product.image}`;
   const description = product.description || "";
-
+  const hiddenChars = description.length - MAX_DESCRIPTION_LENGTH;
+  const shouldShowButton = hiddenChars >= MIN_HIDDEN_LENGTH;
   const handleAdd = () => {
     dispatch(addToCart({ product, quantity }));
   };
@@ -74,7 +76,7 @@ const Product = ({ product }) => {
       component="section"
       className={styles.wrapper}
       sx={{
-        height: showFull ? "auto" : "572px",
+        height: showFull || !shouldShowButton ? "auto" : "572px",
         "@media (max-width: 1200px)": { height: "auto" },
       }}
     >
@@ -143,7 +145,7 @@ const Product = ({ product }) => {
           )}
         </Box>
         <Box className={`${styles.controls} ${styles.mui}`}>
-          <Box>
+          <Box className={styles.quantityButtons}>
             <Button
               className={`${styles.quantityMinus} ${styles.mui}`}
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -184,11 +186,11 @@ const Product = ({ product }) => {
             showFull ? styles.expanded : ""
           }`}
         >
-          {showFull || description.length <= MAX_DESCRIPTION_LENGTH
-            ? description
-            : `${description.slice(0, MAX_DESCRIPTION_LENGTH).trimEnd()}...`}
+          {shouldShowButton && !showFull
+            ? `${description.slice(0, MAX_DESCRIPTION_LENGTH).trimEnd()}...`
+            : description}
         </Typography>
-        {description.length > MAX_DESCRIPTION_LENGTH &&
+        {shouldShowButton &&
           (showFull ? (
             <Button
               className={`${styles.hideBtn} ${styles.mui}`}
