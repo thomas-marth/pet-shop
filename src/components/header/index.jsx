@@ -6,7 +6,9 @@ import Logo from "../../assets/icons/logo.svg";
 import styles from "./styles.module.css";
 
 const Header = () => {
-  const itemCount = useSelector((state) => state.cart.items.length);
+  const itemCount = useSelector((state) =>
+    state.cart.items.reduce((sum, item) => sum + item.quantity, 0)
+  );
 
   return (
     <header className={styles.header}>
@@ -53,9 +55,26 @@ const Header = () => {
         {/* Cart icon */}
         <NavLink to="/cart" className={styles.cartLink} aria-label="Cart">
           <Badge
-            className={styles.badge}
+            slotProps={{ badge: { className: styles.badge } }}
             badgeContent={itemCount}
             color="primary"
+            sx={{
+              "& .MuiBadge-badge": {
+                color: "#fff",
+                backgroundColor: "#0D50FF",
+                textAlign: "center",
+                fontFamily: "Montserrat",
+                fontSize: "12px",
+                fontWeight: 600,
+                lineHeight: 0.9,
+                borderRadius: "50%",
+                padding: "7px",
+                width: "26px",
+                height: "26px",
+                top: "19px",
+                right: "36px",
+              },
+            }}
           >
             <img className={styles.cart} src={ShoppingBag} alt="Shopping Bag" />
           </Badge>

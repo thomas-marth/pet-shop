@@ -63,16 +63,6 @@
   animation: bag-wobble 0.4s ease-in-out 1;
 }
 
-.badge:global(.MuiBadge-badge) {
-  color: #fff;
-  text-align: center;
-  font-family: "Montserrat";
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 0.9;
-  padding: 7px;
-}
-
 @keyframes bag-wobble {
   0% {
     transform: rotate(0deg);
