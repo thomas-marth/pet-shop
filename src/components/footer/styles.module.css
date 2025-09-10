@@ -18,31 +18,22 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-  grid-template-areas:
-    "phone"
-    "address"
-    "hours"
-    "socials";
 }
 
 .phoneBlock {
-  grid-area: phone;
-}
-
-.socialsBlock {
-  grid-area: socials;
+  order: 0;
 }
 
 .addressBlock {
-  grid-area: address;
+  order: 1;
 }
 
 .hoursBlock {
-  grid-area: hours;
+  order: 2;
 }
 
 .socialsBlock {
-  order: 4;
+  order: 3;
 }
 
 @media (min-width: 768px) {
@@ -53,10 +44,26 @@
       "phone socials"
       "address hours";
   }
-}
 
-.socialsBlock {
-  order: 0;
+  .phoneBlock {
+    order: 0;
+    grid-area: phone;
+  }
+
+  .socialsBlock {
+    order: 1;
+    grid-area: socials;
+  }
+
+  .addressBlock {
+    order: 2;
+    grid-area: address;
+  }
+
+  .hoursBlock {
+    order: 3;
+    grid-area: hours;
+  }
 }
 
 .infoBlock {

@@ -20,6 +20,12 @@
   min-height: 60px;
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -85,5 +91,11 @@
   }
   100% {
     transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .actions {
+    gap: 20px;
   }
 }
