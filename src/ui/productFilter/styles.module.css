@@ -32,3 +32,13 @@
   line-height: 1.3;
   opacity: 1;
 }
+
+lable:global(.MuiFormControlLabel-root) {
+  margin-top: 0px;
+}
+
+@media (max-width: 375px) {
+  .priceForm:global(.MuiStack-root) {
+    max-width: 272px;
+  }
+}

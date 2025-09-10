@@ -16,7 +16,7 @@ function SalesPage() {
   return (
     <div className={styles.container}>
       <BreadcrumbsNav items={items} />
-      <h1>Discounted items</h1>
+      <h1 className={styles.title}>Discounted items</h1>
       <ProductFilter filters={filters} onChange={setFilters} hideDiscount />
       <ProductsList filters={filters} />
     </div>

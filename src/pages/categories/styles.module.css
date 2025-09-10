@@ -8,6 +8,6 @@
   .title {
     text-align: center;
     margin-top: 60px;
-    font-size: clamp(44px, 7vw, 64px);
+    font-size: clamp(50px, 7vw, 64px);
   }
 }

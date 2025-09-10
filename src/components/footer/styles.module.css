@@ -105,3 +105,9 @@
   height: auto;
   display: block;
 }
+
+@media (max-width: 768px) {
+  .text {
+    font-size: clamp(32px, 8vw, 40px);
+  }
+}

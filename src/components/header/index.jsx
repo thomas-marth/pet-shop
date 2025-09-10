@@ -123,46 +123,43 @@ const Header = () => {
         <NavLink to="/" className={styles.logo} aria-label="Home page">
           <img src={Logo} alt="Logo" />
         </NavLink>
-
-        <div className={styles.actions}>
-          {isMobile ? (
-            <>
-              {cartLink}
-              <IconButton
-                aria-label="Open navigation menu"
-                onClick={toggleDrawer(true)}
-                sx={{ marginLeft: "7px" }}
+        {isMobile ? (
+          <div className={styles.actions}>
+            {cartLink}
+            <IconButton
+              aria-label="Open navigation menu"
+              onClick={toggleDrawer(true)}
+              sx={{ marginLeft: "7px" }}
+            >
+              <MenuIcon sx={{ fontSize: 40 }} />
+            </IconButton>
+            <Drawer
+              anchor="right"
+              open={isDrawerOpen}
+              onClose={toggleDrawer(false)}
+            >
+              <Box
+                onClick={toggleDrawer(false)}
+                sx={{
+                  width: 250,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                  p: 2,
+                }}
               >
-                <MenuIcon sx={{ fontSize: 40 }} />
-              </IconButton>
-              <Drawer
-                anchor="right"
-                open={isDrawerOpen}
-                onClose={toggleDrawer(false)}
-              >
-                <Box
-                  onClick={toggleDrawer(false)}
-                  sx={{
-                    width: 250,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 2,
-                    p: 2,
-                  }}
-                >
-                  {navLinks}
-                </Box>
-              </Drawer>
-            </>
-          ) : (
-            <>
-              <nav className={styles.nav} aria-label="Primary navigation">
                 {navLinks}
-              </nav>
-              {cartLink}
-            </>
-          )}
-        </div>
+              </Box>
+            </Drawer>
+          </div>
+        ) : (
+          <>
+            <nav className={styles.nav} aria-label="Primary navigation">
+              {navLinks}
+            </nav>
+            {cartLink}
+          </>
+        )}
       </div>
     </header>
   );

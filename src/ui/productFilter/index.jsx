@@ -3,7 +3,6 @@ import CustomCheckbox from "../customCheckbox";
 import {
   FormControl,
   FormControlLabel,
-  InputLabel,
   MenuItem,
   Select,
   Stack,
@@ -26,8 +25,10 @@ const ProductFilter = ({ filters, onChange, hideDiscount = false }) => {
       mb={5}
       sx={{
         flexWrap: "wrap",
+        rowGap: "10px",
         "@media (max-width:768px)": {
           justifyContent: "space-around",
+          gap: "10px",
         },
       }}
     >
@@ -76,6 +77,7 @@ const ProductFilter = ({ filters, onChange, hideDiscount = false }) => {
           label="Discounted items"
           labelPlacement="start"
           sx={{
+            mt: "0 !important",
             "& .MuiFormControlLabel-label": {
               color: "#282828",
               fontFamily: "Montserrat",
@@ -85,12 +87,17 @@ const ProductFilter = ({ filters, onChange, hideDiscount = false }) => {
               marginLeft: "24px",
               marginRight: "7px",
             },
+            "& .MuiTypography-root": {
+              margin: 0,
+              marginLeft: "24px",
+            },
           }}
         />
       )}
       <FormControl
         size="small"
         sx={{
+          mt: "0 !important",
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
