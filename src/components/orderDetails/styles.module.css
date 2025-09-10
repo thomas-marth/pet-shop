@@ -54,3 +54,20 @@
     width: 100%;
   }
 }
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 24px 16px;
+    gap: 12px;
+  }
+
+  .title,
+  .items,
+  .totalLabel {
+    font-size: 32px;
+  }
+
+  .totalPrice {
+    font-size: 48px;
+  }
+}
