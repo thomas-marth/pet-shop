@@ -18,6 +18,27 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  grid-template-areas:
+    "phone"
+    "address"
+    "hours"
+    "socials";
+}
+
+.phoneBlock {
+  grid-area: phone;
+}
+
+.socialsBlock {
+  grid-area: socials;
+}
+
+.addressBlock {
+  grid-area: address;
+}
+
+.hoursBlock {
+  grid-area: hours;
 }
 
 .socialsBlock {
@@ -28,6 +49,9 @@
   .infoGrid {
     display: grid;
     grid-template-columns: 195fr 137fr;
+    grid-template-areas:
+      "phone socials"
+      "address hours";
   }
 }
 

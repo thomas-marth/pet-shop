@@ -11,7 +11,7 @@ const Footer = () => {
         <footer className={styles.flexWrapper}>
           {/* Contact blocks */}
           <div className={styles.infoGrid}>
-            <div className={styles.infoBlock}>
+            <div className={`${styles.infoBlock} ${styles.phoneBlock}`}>
               <h4 className={styles.title}>Phone</h4>
               <p className={styles.text}>+49 30 915-88492</p>
             </div>
@@ -36,13 +36,13 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-            <div className={styles.infoBlock}>
+            <div className={`${styles.infoBlock} ${styles.addressBlock}`}>
               <h4 className={styles.title}>Address</h4>
               <p className={styles.text}>
                 Wallstraße 9-13, 10179 Berlin, Deutschland
               </p>
             </div>
-            <div className={styles.infoBlock}>
+            <div className={`${styles.infoBlock} ${styles.hoursBlock}`}>
               <h4 className={styles.title}>Working Hours</h4>
               <p className={styles.text}>24 hours a day</p>
             </div>
