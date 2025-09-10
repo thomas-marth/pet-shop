@@ -20,10 +20,18 @@
   gap: 32px;
 }
 
+.socialsBlock {
+  order: 4;
+}
+
 @media (min-width: 768px) {
   .infoGrid {
     grid-template-columns: 195fr 137fr;
   }
+}
+
+.socialsBlock {
+  order: 0;
 }
 
 .infoBlock {
