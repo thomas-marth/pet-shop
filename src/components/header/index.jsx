@@ -131,8 +131,9 @@ const Header = () => {
               <IconButton
                 aria-label="Open navigation menu"
                 onClick={toggleDrawer(true)}
+                sx={{ marginLeft: "7px" }}
               >
-                <MenuIcon />
+                <MenuIcon sx={{ fontSize: 40 }} />
               </IconButton>
               <Drawer
                 anchor="right"

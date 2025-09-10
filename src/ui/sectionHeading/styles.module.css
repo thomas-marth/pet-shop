@@ -46,4 +46,8 @@
   .buttonWrapper {
     display: none;
   }
+
+  .title {
+    font-size: clamp(44px, 9vw, 64px);
+  }
 }
