@@ -15,8 +15,8 @@
 }
 
 .infoGrid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 32px;
 }
 
@@ -26,6 +26,7 @@
 
 @media (min-width: 768px) {
   .infoGrid {
+    display: grid;
     grid-template-columns: 195fr 137fr;
   }
 }
