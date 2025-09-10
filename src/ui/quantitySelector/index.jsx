@@ -3,9 +3,18 @@ import minusIcon from "@/assets/icons/minus.svg";
 import plusIcon from "@/assets/icons/plus.svg";
 import styles from "./styles.module.css";
 
-const QuantitySelector = ({ quantity, onIncrease, onDecrease }) => {
+const QuantitySelector = ({
+  quantity,
+  onIncrease,
+  onDecrease,
+  fullWidth = false,
+}) => {
   return (
-    <Box className={`${styles.quantityButtons} ${styles.mui}`}>
+    <Box
+      className={`${styles.quantityButtons} ${styles.mui} ${
+        fullWidth ? styles.fullWidth : ""
+      }`}
+    >
       <Button
         className={`${styles.quantityMinus} ${styles.mui}`}
         onClick={onDecrease}

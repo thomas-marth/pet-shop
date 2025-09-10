@@ -37,11 +37,11 @@
   font-weight: 500;
   line-height: 1.3;
   margin-bottom: 16px;
-  overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
+  display: "-webkit-box";
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .controls {
@@ -81,14 +81,22 @@
   right: 32px;
 }
 
+@media (max-width: 1200px) {
+  :global(.quantityButtons.mui) {
+    width: auto !important;
+  }
+}
+
 @media (max-width: 768px) {
   .item.mui {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .controls {
     width: 100%;
   }
+
   .removeBtn {
     top: 8px;
     right: 8px;

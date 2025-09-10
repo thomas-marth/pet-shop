@@ -50,6 +50,7 @@ const CartItem = ({ item }) => {
             quantity={item.quantity}
             onIncrease={handleIncrease}
             onDecrease={handleDecrease}
+            fullWidth={false}
           />
           <Box className={styles.prices}>
             <Typography

@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.fullWidth.mui {
+  /* placeholder for responsive width */
+}
+
 .quantityCounter.mui.styleСlash {
   color: #282828;
   font-family: "Montserrat";
@@ -34,7 +38,7 @@
 }
 
 @media (max-width: 1200px) {
-  .quantityButtons.mui {
+  .fullWidth.mui {
     width: 100%;
   }
 
