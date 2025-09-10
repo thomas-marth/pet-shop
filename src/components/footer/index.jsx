@@ -18,10 +18,20 @@ const Footer = () => {
             <div className={styles.infoBlock}>
               <h4 className={styles.title}>Socials</h4>
               <div className={styles.socials}>
-                <a href="#" aria-label="Instagram">
+                <a
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
                   <img src={Instagram} alt="Instagram icon" />
                 </a>
-                <a href="#" aria-label="Whatsapp">
+                <a
+                  href="https://wa.me/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Whatsapp"
+                >
                   <img src={Whatsapp} alt="Whatsapp icon" />
                 </a>
               </div>
