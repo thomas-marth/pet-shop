@@ -24,7 +24,7 @@ const Header = () => {
 
     if (itemCount > 0) {
       triggerAnimation();
-      intervalId = setInterval(triggerAnimation, 7000);
+      intervalId = setInterval(triggerAnimation, 6000);
     } else {
       setAnimateCart(false);
     }

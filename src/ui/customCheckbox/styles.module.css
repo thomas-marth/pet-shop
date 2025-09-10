@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   background: #fff;
-  margin-right: 15px;
+
   transition: background 120ms ease, border-color 120ms ease,
     box-shadow 120ms ease;
 }

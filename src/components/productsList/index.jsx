@@ -1,12 +1,13 @@
 import styles from "./styles.module.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ProductCardSkeleton from "../../components/productCard/skeleton";
 import { fetchProducts } from "@/redux/slices/productSlice";
 import ProductCard from "../../components/productCard";
 
 const ProductsList = ({ limit, categoryId, filters = {} }) => {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.products);
+  const { items, status } = useSelector((state) => state.products);
 
   useEffect(() => {
     if (!items.length) {
@@ -64,12 +65,16 @@ const ProductsList = ({ limit, categoryId, filters = {} }) => {
     products = products.slice(0, limit);
   }
 
+  const skeletons = Array.from({ length: limit || 8 });
+
   return (
     <section className={styles.section}>
       <ul className={styles.list}>
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {status === "loading"
+          ? skeletons.map((_, index) => <ProductCardSkeleton key={index} />)
+          : products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
       </ul>
     </section>
   );

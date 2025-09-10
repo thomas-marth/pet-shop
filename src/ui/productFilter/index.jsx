@@ -82,12 +82,39 @@ const ProductFilter = ({ filters, onChange, hideDiscount = false }) => {
           }}
         />
       )}
-      <FormControl size="small">
-        <InputLabel>Sorted</InputLabel>
+      <FormControl
+        size="small"
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 2,
+        }}
+      >
+        <Typography
+          sx={{
+            color: "#282828",
+            fontFamily: "Montserrat",
+            fontSize: "20px",
+            fontWeight: 600,
+            lineHeight: 1.3,
+            marginLeft: "15px",
+          }}
+        >
+          Sorted
+        </Typography>
+
         <Select
-          label="Sorted"
           value={filters.sortBy}
           onChange={handleChange("sortBy")}
+          displayEmpty
+          sx={{
+            minWidth: 160,
+            fontFamily: "Montserrat",
+            fontSize: "16px",
+            fontWeight: 500,
+            color: "#282828",
+          }}
         >
           <MenuItem value="default">by default</MenuItem>
           <MenuItem value="priceDesc">price: high-low</MenuItem>
