@@ -81,7 +81,7 @@
   right: 32px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .item.mui {
     flex-direction: column;
     align-items: flex-start;
