@@ -8,8 +8,8 @@ const CategoryCardSkeleton = () => {
         <Skeleton
           variant="rounded"
           width="100%"
-          height={0}
-          sx={{ paddingBottom: "100%", borderRadius: "8px" }}
+          height="100%"
+          sx={{ borderRadius: "8px" }}
         />
       </div>
       <Skeleton
