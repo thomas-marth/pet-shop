@@ -13,10 +13,15 @@ function CartPage() {
   const { items } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOrderPlaced, setIsOrderPlaced] = useState(false);
 
-  const handleSuccess = () => setIsModalOpen(true);
+  const handleSuccess = () => {
+    setIsOrderPlaced(true);
+    setIsModalOpen(true);
+  };
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setIsOrderPlaced(false);
     dispatch(clearCart());
   };
 
@@ -30,7 +35,7 @@ function CartPage() {
       {items.length ? (
         <div className={styles.content}>
           <CartList />
-          <OrderDetails onSuccess={handleSuccess} />
+          <OrderDetails onSuccess={handleSuccess} orderPlaced={isOrderPlaced} />
         </div>
       ) : (
         <>

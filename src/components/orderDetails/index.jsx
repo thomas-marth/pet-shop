@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import OrderForm from "../orderForm";
 import styles from "./styles.module.css";
 
-const OrderDetails = ({ onSuccess }) => {
+const OrderDetails = ({ onSuccess, orderPlaced }) => {
   const { items } = useSelector((state) => state.cart);
   const count = items.reduce((sum, item) => sum + item.quantity, 0);
   const total = items.reduce((sum, item) => {
@@ -18,7 +18,7 @@ const OrderDetails = ({ onSuccess }) => {
         <span className={styles.totalLabel}>Total</span>
         <span className={styles.totalPrice}>${total}</span>
       </div>
-      <OrderForm onSuccess={onSuccess} />
+      <OrderForm onSuccess={onSuccess} orderPlaced={orderPlaced} />
     </div>
   );
 };

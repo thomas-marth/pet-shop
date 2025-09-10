@@ -6,7 +6,7 @@ const namePattern = /^[A-Za-zА-Яа-яЁё\s-]{2,60}$/;
 const phonePattern = /^[+]?[\d\s()-]{7,}$/;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const OrderForm = ({ onSuccess }) => {
+const OrderForm = ({ onSuccess, orderPlaced }) => {
   const {
     register,
     handleSubmit,
@@ -72,10 +72,10 @@ const OrderForm = ({ onSuccess }) => {
       )}
       <button
         type="submit"
-        disabled={isSubmitting}
-        className={`${styles.button} ${isSubmitting ? styles.submitted : ""}`}
+        disabled={isSubmitting || orderPlaced}
+        className={`${styles.button} ${orderPlaced ? styles.submitted : ""}`}
       >
-        {isSubmitting ? "The Order is Placed" : "Order"}
+        {orderPlaced ? "The Order is Placed" : "Order"}
       </button>
     </form>
   );

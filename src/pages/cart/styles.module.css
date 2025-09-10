@@ -9,6 +9,7 @@
   grid-template-columns: 1fr 548px;
   gap: 32px;
   align-items: flex-start;
+  margin-bottom: 80px;
 }
 
 .cartMessage {
