@@ -1,12 +1,25 @@
 import styles from "./styles.module.css";
 import { NavLink } from "react-router-dom";
 import { Button } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import SectionHeading from "../../ui/sectionHeading";
 import CartList from "@/components/cartList";
+import OrderDetails from "@/components/orderDetails";
+import OrderModal from "@/components/orderModal";
+import { clearCart } from "@/redux/slices/cartSlice";
 
 function CartPage() {
   const { items } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSuccess = () => setIsModalOpen(true);
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    dispatch(clearCart());
+  };
+
   return (
     <div className={styles.container}>
       <SectionHeading
@@ -15,7 +28,10 @@ function CartPage() {
         buttonText="Back to the store"
       />
       {items.length ? (
-        <CartList />
+        <div className={styles.content}>
+          <CartList />
+          <OrderDetails onSuccess={handleSuccess} />
+        </div>
       ) : (
         <>
           <p className={styles.cartMessage}>
@@ -31,6 +47,7 @@ function CartPage() {
           </Button>
         </>
       )}
+      <OrderModal open={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 }

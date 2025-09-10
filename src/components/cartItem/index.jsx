@@ -10,8 +10,6 @@ const CartItem = ({ item }) => {
   const dispatch = useDispatch();
   const price = item.discount ? item.discont_price : item.price;
   const oldPrice = item.discount ? item.price : null;
-  const total = price * item.quantity;
-  const oldTotal = oldPrice ? oldPrice * item.quantity : null;
   const imgSrc = item.image?.startsWith("http")
     ? item.image
     : `${CONFIG.API_URL}/${item.image}`;
@@ -57,16 +55,15 @@ const CartItem = ({ item }) => {
               component="span"
               className={`${styles.newPrice} ${styles.mui}`}
             >
-              ${total}
+              ${price}
             </Typography>
-            {oldTotal && (
-              <Typography
-                component="span"
-                className={`${styles.oldPrice} ${styles.mui}`}
-              >
-                ${oldTotal}
-              </Typography>
-            )}
+
+            <Typography
+              component="span"
+              className={`${styles.oldPrice} ${styles.mui}`}
+            >
+              ${oldPrice}
+            </Typography>
           </Box>
         </Box>
       </Box>
