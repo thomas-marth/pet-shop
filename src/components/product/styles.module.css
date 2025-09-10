@@ -242,6 +242,7 @@
       "info";
     height: auto;
     gap: 32px;
+    margin-top: 60px;
   }
 
   .titleMobile.mui {

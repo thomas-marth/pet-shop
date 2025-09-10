@@ -24,6 +24,12 @@ const ProductFilter = ({ filters, onChange, hideDiscount = false }) => {
       spacing={2}
       alignItems="center"
       mb={5}
+      sx={{
+        flexWrap: "wrap",
+        "@media (max-width:768px)": {
+          justifyContent: "space-around",
+        },
+      }}
     >
       <Stack
         direction="row"

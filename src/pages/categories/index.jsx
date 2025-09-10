@@ -4,6 +4,7 @@ import CategoriesList from "../../components/categoriesList";
 import ProductsList from "../../components/productsList";
 import BreadcrumbsNav from "../../ui/breadcrumbs";
 import ProductFilter from "../../ui/productFilter";
+import styles from "./styles.module.css";
 import { http } from "@/shared/http";
 
 function CategoriesPage() {
@@ -51,7 +52,7 @@ function CategoriesPage() {
   return (
     <div className="container">
       <BreadcrumbsNav items={items} />
-      <h1>{title}</h1>
+      <h1 className={styles.title}>{title}</h1>
       {id ? (
         loading ? (
           <p>Loading...</p>
