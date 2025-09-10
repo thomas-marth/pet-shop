@@ -22,7 +22,7 @@
 
 @media (min-width: 768px) {
   .infoGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 195fr 137fr;
   }
 }
 
