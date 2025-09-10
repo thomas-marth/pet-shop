@@ -62,6 +62,39 @@ const Header = () => {
     </>
   );
 
+  const cartLink = (
+    <NavLink to="/cart" className={styles.cartLink} aria-label="Cart">
+      <Badge
+        slotProps={{ badge: { className: styles.badge } }}
+        badgeContent={itemCount}
+        color="primary"
+        sx={{
+          "& .MuiBadge-badge": {
+            color: "#fff",
+            backgroundColor: "#0D50FF",
+            textAlign: "center",
+            fontFamily: "Montserrat",
+            fontSize: "12px",
+            fontWeight: 600,
+            lineHeight: 0.9,
+            borderRadius: "50%",
+            padding: "7px",
+            width: "26px",
+            height: "26px",
+            top: "19px",
+            right: "36px",
+          },
+        }}
+      >
+        <img
+          className={`${styles.cart} ${animateCart ? styles.cartAnimated : ""}`}
+          src={ShoppingBag}
+          alt="Shopping Bag"
+        />
+      </Badge>
+    </NavLink>
+  );
+
   useEffect(() => {
     let intervalId;
     let timeoutId;
@@ -90,9 +123,11 @@ const Header = () => {
         <NavLink to="/" className={styles.logo} aria-label="Home page">
           <img src={Logo} alt="Logo" />
         </NavLink>
+
         <div className={styles.actions}>
           {isMobile ? (
             <>
+              {cartLink}
               <IconButton
                 aria-label="Open navigation menu"
                 onClick={toggleDrawer(true)}
@@ -119,42 +154,13 @@ const Header = () => {
               </Drawer>
             </>
           ) : (
-            <nav className={styles.nav} aria-label="Primary navigation">
-              {navLinks}
-            </nav>
+            <>
+              <nav className={styles.nav} aria-label="Primary navigation">
+                {navLinks}
+              </nav>
+              {cartLink}
+            </>
           )}
-          <NavLink to="/cart" className={styles.cartLink} aria-label="Cart">
-            <Badge
-              slotProps={{ badge: { className: styles.badge } }}
-              badgeContent={itemCount}
-              color="primary"
-              sx={{
-                "& .MuiBadge-badge": {
-                  color: "#fff",
-                  backgroundColor: "#0D50FF",
-                  textAlign: "center",
-                  fontFamily: "Montserrat",
-                  fontSize: "12px",
-                  fontWeight: 600,
-                  lineHeight: 0.9,
-                  borderRadius: "50%",
-                  padding: "7px",
-                  width: "26px",
-                  height: "26px",
-                  top: "19px",
-                  right: "36px",
-                },
-              }}
-            >
-              <img
-                className={`${styles.cart} ${
-                  animateCart ? styles.cartAnimated : ""
-                }`}
-                src={ShoppingBag}
-                alt="Shopping Bag"
-              />
-            </Badge>
-          </NavLink>
         </div>
       </div>
     </header>

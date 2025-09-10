@@ -41,3 +41,9 @@
   margin-left: 32px;
   margin-top: 9px;
 }
+
+@media (max-width: 768px) {
+  .buttonWrapper {
+    display: none;
+  }
+}
