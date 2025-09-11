@@ -30,7 +30,7 @@
 
 .title {
   color: #fff;
-  font-family: "Montserrat";
+  /* font-family: "Montserrat"; */
   font-size: 40px;
   font-weight: 600;
   line-height: 1.1;
@@ -39,7 +39,7 @@
 
 .text {
   color: #fff;
-  font-family: "Montserrat";
+  /* font-family: "Montserrat"; */
   font-size: 20px;
   font-weight: 600;
   line-height: 1.1;

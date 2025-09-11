@@ -1,121 +1,63 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import Badge from "@mui/material/Badge";
+import { useMemo, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Box from "@mui/material/Box";
-import ShoppingBag from "../../assets/icons/Vector.png";
-import Logo from "../../assets/icons/logo.svg";
+import Logo from "@/assets/icons/logo.svg";
+import { selectCartCount } from "@/redux/selectors/cart";
+import CartBadge from "./CartBadge";
 import styles from "./styles.module.css";
 
 const Header = () => {
-  const itemCount = useSelector((state) =>
-    state.cart.items.reduce((sum, item) => sum + item.quantity, 0)
-  );
-
-  const [animateCart, setAnimateCart] = useState(false);
+  const itemCount = useSelector(selectCartCount);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width:768px)");
 
-  const toggleDrawer = (open) => () => {
-    setIsDrawerOpen(open);
-  };
+  const toggleDrawer = (open) => () => setIsDrawerOpen(open);
 
-  const navLinks = (
-    <>
-      <NavLink
-        to="/"
-        end
-        className={({ isActive }) =>
-          isActive ? `${styles.link} ${styles.active}` : styles.link
-        }
-      >
-        Main Page
-      </NavLink>
-      <NavLink
-        to="/categories"
-        className={({ isActive }) =>
-          isActive ? `${styles.link} ${styles.active}` : styles.link
-        }
-      >
-        Categories
-      </NavLink>
-      <NavLink
-        to="/products"
-        className={({ isActive }) =>
-          isActive ? `${styles.link} ${styles.active}` : styles.link
-        }
-      >
-        All products
-      </NavLink>
-      <NavLink
-        to="/sales"
-        className={({ isActive }) =>
-          isActive ? `${styles.link} ${styles.active}` : styles.link
-        }
-      >
-        All sales
-      </NavLink>
-    </>
+  const navLinks = useMemo(
+    () => (
+      <>
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) =>
+            isActive ? `${styles.link} ${styles.active}` : styles.link
+          }
+        >
+          Main Page
+        </NavLink>
+        <NavLink
+          to="/categories"
+          className={({ isActive }) =>
+            isActive ? `${styles.link} ${styles.active}` : styles.link
+          }
+        >
+          Categories
+        </NavLink>
+        <NavLink
+          to="/products"
+          className={({ isActive }) =>
+            isActive ? `${styles.link} ${styles.active}` : styles.link
+          }
+        >
+          All products
+        </NavLink>
+        <NavLink
+          to="/sales"
+          className={({ isActive }) =>
+            isActive ? `${styles.link} ${styles.active}` : styles.link
+          }
+        >
+          All sales
+        </NavLink>
+      </>
+    ),
+    []
   );
-
-  const cartLink = (
-    <NavLink to="/cart" className={styles.cartLink} aria-label="Cart">
-      <Badge
-        slotProps={{ badge: { className: styles.badge } }}
-        badgeContent={itemCount}
-        color="primary"
-        sx={{
-          "& .MuiBadge-badge": {
-            color: "#fff",
-            backgroundColor: "#0D50FF",
-            textAlign: "center",
-            fontFamily: "Montserrat",
-            fontSize: "12px",
-            fontWeight: 600,
-            lineHeight: 0.9,
-            borderRadius: "50%",
-            padding: "7px",
-            width: "26px",
-            height: "26px",
-            top: "19px",
-            right: "36px",
-          },
-        }}
-      >
-        <img
-          className={`${styles.cart} ${animateCart ? styles.cartAnimated : ""}`}
-          src={ShoppingBag}
-          alt="Shopping Bag"
-        />
-      </Badge>
-    </NavLink>
-  );
-
-  useEffect(() => {
-    let intervalId;
-    let timeoutId;
-
-    const triggerAnimation = () => {
-      setAnimateCart(true);
-      timeoutId = setTimeout(() => setAnimateCart(false), 500);
-    };
-
-    if (itemCount > 0) {
-      triggerAnimation();
-      intervalId = setInterval(triggerAnimation, 6000);
-    } else {
-      setAnimateCart(false);
-    }
-
-    return () => {
-      clearInterval(intervalId);
-      clearTimeout(timeoutId);
-    };
-  }, [itemCount]);
 
   return (
     <header className={styles.header}>
@@ -123,16 +65,18 @@ const Header = () => {
         <NavLink to="/" className={styles.logo} aria-label="Home page">
           <img src={Logo} alt="Logo" />
         </NavLink>
+
         {isMobile ? (
           <div className={styles.actions}>
-            {cartLink}
+            <CartBadge count={itemCount} />
             <IconButton
               aria-label="Open navigation menu"
               onClick={toggleDrawer(true)}
-              sx={{ marginLeft: "7px" }}
+              className={styles.menuBtn}
             >
-              <MenuIcon sx={{ fontSize: 40 }} />
+              <MenuIcon className={styles.menuIcon} />
             </IconButton>
+
             <Drawer
               anchor="right"
               open={isDrawerOpen}
@@ -140,13 +84,9 @@ const Header = () => {
             >
               <Box
                 onClick={toggleDrawer(false)}
-                sx={{
-                  width: 250,
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 2,
-                  p: 2,
-                }}
+                className={styles.drawer}
+                role="navigation"
+                aria-label="Primary navigation"
               >
                 {navLinks}
               </Box>
@@ -157,7 +97,7 @@ const Header = () => {
             <nav className={styles.nav} aria-label="Primary navigation">
               {navLinks}
             </nav>
-            {cartLink}
+            <CartBadge count={itemCount} />
           </>
         )}
       </div>

@@ -28,9 +28,16 @@
   gap: 16px;
 }
 
+/* Wrapper for input + error message */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .input {
   color: #fff;
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-size: 20px;
   font-weight: 500;
   line-height: 1.3;
@@ -40,21 +47,37 @@
   background: transparent;
   width: 100%;
   outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-input::placeholder {
+.input::placeholder {
   color: #fff;
+  opacity: 1;
+}
+
+.input:focus-visible {
+  outline: 3px solid rgba(154, 193, 252, 0.6);
+  outline-offset: 1px;
 }
 
 .error {
-  border: 2px solid rgb(252, 71, 125);
+  border: 2px solid rgb(245, 50, 108);
+}
+
+/* Error message under input */
+.helper {
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  color: rgb(252, 151, 137);
+  padding: 0 4px;
 }
 
 .button {
   margin-top: 32px;
   background-color: #fff;
   color: #282828;
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-size: 20px;
   font-weight: 600;
   line-height: 1.3;
@@ -66,11 +89,17 @@ input::placeholder {
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.button:hover {
+.button:hover:not(:disabled) {
   color: #fff;
   background-color: #000;
 }
 
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* State after successful submission */
 .submitted {
   background: #f1f3f4;
   color: #0d50ff;

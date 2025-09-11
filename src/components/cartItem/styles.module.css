@@ -33,11 +33,8 @@
   font-size: 20px;
   font-weight: 500;
   line-height: 1.3;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
   text-overflow: ellipsis;
-  /* display: "-webkit-box";
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; */
   overflow: hidden;
 }
 
@@ -75,6 +72,12 @@
 
 .removeBtn {
   margin-left: auto;
+}
+
+.removeIcon {
+  width: 24px;
+  height: 24px;
+  color: #282828;
 }
 
 @media (max-width: 1200px) {

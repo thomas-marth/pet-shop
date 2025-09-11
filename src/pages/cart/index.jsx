@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import SectionHeading from "../../ui/sectionHeading";
+import SectionHeading from "@/ui/sectionHeading";
 import CartList from "@/components/cartList";
 import OrderDetails from "@/components/orderDetails";
 import OrderModal from "@/components/orderModal";
@@ -12,6 +12,7 @@ import { clearCart } from "@/redux/slices/cartSlice";
 function CartPage() {
   const { items } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
 
@@ -19,6 +20,7 @@ function CartPage() {
     setIsOrderPlaced(true);
     setIsModalOpen(true);
   };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setIsOrderPlaced(false);

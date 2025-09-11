@@ -29,7 +29,7 @@ const Divider = () => (
   />
 );
 
-const BreadcrumbsNav = ({ items }) => {
+const BreadcrumbsNav = ({ items = [] }) => {
   return (
     <Box
       sx={{
@@ -43,9 +43,12 @@ const BreadcrumbsNav = ({ items }) => {
       }}
     >
       {items.map((item, index) => {
+        const label = typeof item === "string" ? item : item.label;
+        const path = typeof item === "string" ? undefined : item.path;
         const isLast = index === items.length - 1;
+
         const buttonProps =
-          isLast || !item.path
+          isLast || !path
             ? {
                 disabled: true,
                 sx: {
@@ -62,14 +65,16 @@ const BreadcrumbsNav = ({ items }) => {
               }
             : {
                 component: NavLink,
-                to: item.path,
+                to: path,
                 sx: buttonSx,
               };
 
+        const key = `crumb-${path || String(label)}-${index}`;
+
         return (
-          <Fragment key={item.path || item.label}>
+          <Fragment key={key}>
             <Button variant="outlined" {...buttonProps}>
-              {item.label}
+              {label}
             </Button>
             {!isLast && <Divider />}
           </Fragment>

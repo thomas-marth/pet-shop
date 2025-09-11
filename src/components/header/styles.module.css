@@ -1,7 +1,5 @@
 .header {
   color: #282828;
-  font-family: Montserrat;
-
   background-color: #ffffff;
   border-bottom: 1px solid #ddd;
   padding: 30px 0 28px;
@@ -53,6 +51,14 @@
   color: #0d50ff;
 }
 
+.drawer {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
 .cartLink {
   color: #374151;
   font-size: 20px;
@@ -92,6 +98,28 @@
   100% {
     transform: rotate(0deg);
   }
+}
+
+.badge :global(.MuiBadge-badge) {
+  color: #ffffff;
+  background-color: #0d50ff;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 0.9;
+  border-radius: 50%;
+  padding: 7px;
+  width: 26px;
+  height: 26px;
+  top: 19px;
+  right: 36px;
+}
+
+.menuBtn {
+  margin-left: 7px;
+}
+.menuIcon {
+  font-size: 40px;
 }
 
 @media (max-width: 768px) {

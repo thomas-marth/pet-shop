@@ -4,101 +4,172 @@ import { useForm } from "react-hook-form";
 import { Alert, Snackbar } from "@mui/material";
 import { http } from "@/shared/http";
 
+import { nameRules, phoneRules, emailRules } from "@/shared/validation/rules";
+import { sanitizePhone, normalizeEmail } from "@/shared/validation/utils";
+
 const DiscountForm = () => {
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    setValue,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm({ mode: "onChange" });
 
-  const [open, setOpen] = useState(false);
-  const [buttonText, setButtonText] = useState("Get a discount");
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [snack, setSnack] = useState({
+    open: false,
+    severity: "success",
+    message:
+      "Thanks! The code of your discount coupon has been successfully sent to your e-mail!",
+  });
 
   const onSubmit = async (data) => {
+    const payload = {
+      name: data.name?.trim(),
+      phone: sanitizePhone(data.phone),
+      email: normalizeEmail(data.email),
+    };
+
     try {
-      await http.post("/sale/send", data);
+      await http.post("/sale/send", payload);
       reset();
-      setOpen(true);
-      setButtonText("Request Submitted");
-      setIsSubmitted(true);
+      setSnack({
+        open: true,
+        severity: "success",
+        message:
+          "Thanks! The code of your discount coupon has been successfully sent to your e-mail!",
+      });
     } catch (error) {
-      console.log(error);
+      setSnack({
+        open: true,
+        severity: "error",
+        message:
+          "Something went wrong. Please try again later or check your connection.",
+      });
+      console.error(error);
     }
   };
 
   const handleClose = (_, reason) => {
     if (reason === "clickaway") return;
-    setOpen(false);
-    setButtonText("Get a discount");
-    setIsSubmitted(false);
+    setSnack((s) => ({ ...s, open: false }));
   };
+
+  const buttonLabel = isSubmitting
+    ? "Sending..."
+    : isSubmitSuccessful
+    ? "Request Submitted"
+    : "Get a discount";
 
   return (
     <>
       <section className={styles.section}>
         <h2 className={styles.title}>5% off on the first order</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={styles.form}
+          noValidate
+        >
           <div className={styles.inputs}>
-            <input
-              type="text"
-              placeholder="Name"
-              className={`${styles.input} ${errors.name ? styles.error : ""}`}
-              {...register("name", { required: true })}
-            />
-            <input
-              type="tel"
-              placeholder="Phone number"
-              className={`${styles.input} ${errors.phone ? styles.error : ""}`}
-              {...register("phone", {
-                required: true,
-                pattern: {
-                  value: /^\+?[0-9]{10,15}$/,
-                  message: "Invalid phone number",
-                },
-              })}
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              className={`${styles.input} ${errors.email ? styles.error : ""}`}
-              {...register("email", {
-                required: true,
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Invalid email address",
-                },
-              })}
-            />
+            {/* Name */}
+            <div className={styles.field}>
+              <input
+                type="text"
+                placeholder="Name"
+                className={`${styles.input} ${errors.name ? styles.error : ""}`}
+                aria-invalid={!!errors.name}
+                aria-describedby="name-error"
+                autoComplete="name"
+                {...register("name", nameRules())}
+              />
+              {errors.name && (
+                <span id="name-error" className={styles.helper}>
+                  {errors.name.message}
+                </span>
+              )}
+            </div>
+
+            {/* Phone */}
+            <div className={styles.field}>
+              <input
+                type="tel"
+                placeholder="Phone number"
+                className={`${styles.input} ${
+                  errors.phone ? styles.error : ""
+                }`}
+                aria-invalid={!!errors.phone}
+                aria-describedby="phone-error"
+                inputMode="tel"
+                autoComplete="tel"
+                {...register("phone", phoneRules())}
+                onChange={(e) => {
+                  const v = sanitizePhone(e.target.value);
+                  setValue("phone", v, { shouldValidate: true });
+                }}
+              />
+              {errors.phone && (
+                <span id="phone-error" className={styles.helper}>
+                  {errors.phone.message}
+                </span>
+              )}
+            </div>
+
+            {/* Email */}
+            <div className={styles.field}>
+              <input
+                type="email"
+                placeholder="Email"
+                className={`${styles.input} ${
+                  errors.email ? styles.error : ""
+                }`}
+                aria-invalid={!!errors.email}
+                aria-describedby="email-error"
+                inputMode="email"
+                autoComplete="email"
+                {...register("email", emailRules())}
+                onBlur={(e) => {
+                  const v = normalizeEmail(e.target.value);
+                  setValue("email", v, { shouldValidate: true });
+                }}
+              />
+              {errors.email && (
+                <span id="email-error" className={styles.helper}>
+                  {errors.email.message}
+                </span>
+              )}
+            </div>
           </div>
+
           <button
             type="submit"
             className={`${styles.button} ${
-              isSubmitted ? styles.submitted : ""
+              isSubmitSuccessful ? styles.submitted : ""
             }`}
+            disabled={isSubmitting}
           >
-            {buttonText}
+            {buttonLabel}
           </button>
         </form>
       </section>
+
       <Snackbar
-        open={open}
+        open={snack.open}
         autoHideDuration={6000}
         onClose={handleClose}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
         <Alert
           onClose={handleClose}
-          severity="success"
+          severity={snack.severity}
           variant="filled"
           sx={{ width: "100%" }}
         >
-          Thanks! The code of your discount coupon has been successfully sent to
-          your e-mail!
+          {snack.message}
         </Alert>
       </Snackbar>
     </>
   );
 };
+
 export default DiscountForm;

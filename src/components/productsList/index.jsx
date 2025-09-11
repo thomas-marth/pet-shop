@@ -1,77 +1,41 @@
+import {
+  useProducts,
+  useEnsureProductsLoaded,
+} from "@/features/products/hooks";
+import ProductCard from "@/components/productCard";
+import ProductCardSkeleton from "@/components/productCard/skeleton";
 import styles from "./styles.module.css";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import ProductCardSkeleton from "../../components/productCard/skeleton";
-import { fetchProducts } from "@/redux/slices/productSlice";
-import ProductCard from "../../components/productCard";
+
+const SKELETON_FALLBACK = 8;
 
 const ProductsList = ({ limit, categoryId, filters = {} }) => {
-  const dispatch = useDispatch();
-  const { items, status } = useSelector((state) => state.products);
+  useEnsureProductsLoaded();
 
-  useEffect(() => {
-    if (!items.length) {
-      dispatch(fetchProducts());
-    }
-  }, [dispatch, items.length]);
+  const { products, status } = useProducts({ limit, categoryId, filters });
 
-  const { minPrice, maxPrice, discountOnly, sortBy } = filters;
+  const isLoading = status === "loading" || status === "idle";
+  const hasError = status === "failed";
+  const isEmpty = !isLoading && !hasError && products.length === 0;
 
-  let products = items
-    .filter((p) => (categoryId ? p.categoryId === Number(categoryId) : true))
-    .map((p) => {
-      const hasDiscount = p.discont_price && p.discont_price < p.price;
-      return {
-        ...p,
-        discount: hasDiscount
-          ? Math.round(((p.price - p.discont_price) / p.price) * 100)
-          : null,
-        effectivePrice:
-          p.discont_price && p.discont_price < p.price
-            ? p.discont_price
-            : p.price,
-      };
-    });
-
-  if (discountOnly) {
-    products = products.filter((p) => p.discount !== null);
-  }
-
-  const min = Number(minPrice);
-  if (!Number.isNaN(min) && minPrice !== "") {
-    products = products.filter((p) => p.effectivePrice >= min);
-  }
-
-  const max = Number(maxPrice);
-  if (!Number.isNaN(max) && maxPrice !== "") {
-    products = products.filter((p) => p.effectivePrice <= max);
-  }
-
-  switch (sortBy) {
-    case "priceDesc":
-      products = products.sort((a, b) => b.effectivePrice - a.effectivePrice);
-      break;
-    case "priceAsc":
-      products = products.sort((a, b) => a.effectivePrice - b.effectivePrice);
-      break;
-    case "discountDesc":
-      products = products.sort((a, b) => (b.discount || 0) - (a.discount || 0));
-      break;
-    default:
-      products = products.sort((a, b) => a.id - b.id);
-  }
-
-  if (limit) {
-    products = products.slice(0, limit);
-  }
-
-  const skeletons = Array.from({ length: limit || 8 });
+  const skeletonCount = limit || SKELETON_FALLBACK;
 
   return (
     <section className={styles.section}>
+      {hasError && (
+        <p className={styles.error}>
+          Couldn’t load products. Please try again.
+        </p>
+      )}
+
+      {isEmpty && (
+        <p className={styles.empty}>Nothing found. Try changing the filters.</p>
+      )}
+
       <ul className={styles.list}>
-        {status === "loading"
-          ? skeletons.map((_, index) => <ProductCardSkeleton key={index} />)
+        {isLoading
+          ? Array.from({ length: skeletonCount }).map((_, index) => (
+              <ProductCardSkeleton key={`s-${index}`} />
+            ))
           : products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

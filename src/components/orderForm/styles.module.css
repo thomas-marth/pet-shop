@@ -5,6 +5,7 @@
 }
 
 .input {
+  color: #8b8b8b;
   padding: 16px;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -16,10 +17,12 @@
 
 .input::placeholder {
   color: #8b8b8b;
+  opacity: 1;
 }
 
-.input:focus {
-  outline-color: #0965b1;
+.input:focus-visible {
+  outline: 2px solid #8b8b8b;
+  outline-offset: 2px;
 }
 
 .error {
@@ -28,7 +31,7 @@
 
 .errorMessage {
   color: #ff4d4f;
-  font-family: "Montserrat";
+
   font-size: 14px;
   font-weight: 500;
   line-height: 1.3;
@@ -47,10 +50,11 @@
   color: #ffffff;
   border: none;
   cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
 }
 
 .button:hover {
-  background-color: #0c4aeb;
+  background-color: #000;
 }
 
 .button.submitted {
@@ -61,4 +65,5 @@
 
 .button:disabled {
   cursor: not-allowed;
+  opacity: 0.7;
 }

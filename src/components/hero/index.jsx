@@ -12,18 +12,7 @@ const Hero = () => {
             component={NavLink}
             to="/sales"
             variant="contained"
-            sx={{
-              fontFamily: "Montserrat",
-              fontSize: "20px",
-              fontWeight: 600,
-              textTransform: "none",
-              lineHeight: 1.3,
-              backgroundColor: "#0D50FF",
-              padding: "16px 56px",
-              "&:hover": {
-                backgroundColor: "#000",
-              },
-            }}
+            className={styles.button}
           >
             Check out
           </Button>

@@ -1,85 +1,128 @@
 import { useForm } from "react-hook-form";
 import styles from "./styles.module.css";
 import { http } from "@/shared/http";
-
-const namePattern = /^[A-Za-zА-Яа-яЁё\s-]{2,60}$/;
-const phonePattern = /^[+]?[\d\s()-]{7,}$/;
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { nameRules, phoneRules, emailRules } from "@/shared/validation/rules";
+import { sanitizePhone, normalizeEmail } from "@/shared/validation/utils";
 
 const OrderForm = ({ onSuccess, orderPlaced }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
     reset,
-  } = useForm();
+    setValue,
+    formState: { errors, isSubmitting },
+  } = useForm({ mode: "onChange" });
 
   const onSubmit = async (data) => {
+    const payload = {
+      name: data.name?.trim(),
+      phone: sanitizePhone(data.phone),
+      email: normalizeEmail(data.email),
+    };
+
     try {
-      await http.post("/order/send", data);
+      await http.post("/order/send", payload);
       reset();
-      onSuccess();
-    } catch (e) {
-      console.error(e);
+      onSuccess && onSuccess();
+    } catch (error) {
+      console.error(error);
     }
   };
 
+  const disabled = isSubmitting || orderPlaced;
+
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form
+      className={styles.form}
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      aria-busy={isSubmitting}
+    >
       <input
         type="text"
         placeholder="Name"
+        autoComplete="name"
+        aria-invalid={!!errors.name}
+        aria-describedby="name-error"
+        disabled={disabled}
         className={`${styles.input} ${errors.name ? styles.error : ""}`}
-        {...register("name", {
-          required: "Name is required",
-          pattern: {
-            value: namePattern,
-            message:
-              "Name must consist of 2–60 characters, incl. spaces and hyphens",
-          },
-          minLength: 2,
-          maxLength: 60,
-        })}
+        {...register("name", nameRules())}
+        onBlur={(event) => {
+          const v = event.target.value.trim();
+          if (v !== event.target.value) {
+            event.target.value = v;
+          }
+        }}
       />
       {errors.name && (
-        <span className={styles.errorMessage}>{errors.name.message}</span>
+        <span id="name-error" className={styles.errorMessage}>
+          {errors.name.message}
+        </span>
       )}
+
       <input
         type="tel"
         placeholder="Phone number"
+        inputMode="tel"
+        autoComplete="tel"
+        aria-invalid={!!errors.phone}
+        aria-describedby="phone-error"
+        disabled={disabled}
         className={`${styles.input} ${errors.phone ? styles.error : ""}`}
-        {...register("phone", {
-          required: "Phone number is required",
-          pattern: {
-            value: phonePattern,
-            message: "Phone number must be at least 7 digits",
-          },
-        })}
+        {...register(
+          "phone",
+          phoneRules({
+            invalidMsg: "Use digits, spaces, () or + (min length 7)",
+          })
+        )}
+        onChange={(event) => {
+          const v = sanitizePhone(event.target.value);
+          if (v !== event.target.value) {
+            event.target.value = v;
+            setValue("phone", v, { shouldValidate: true });
+          }
+        }}
       />
       {errors.phone && (
-        <span className={styles.errorMessage}>{errors.phone.message}</span>
+        <span id="phone-error" className={styles.errorMessage}>
+          {errors.phone.message}
+        </span>
       )}
+
       <input
         type="email"
         placeholder="Email"
+        inputMode="email"
+        autoComplete="email"
+        aria-invalid={!!errors.email}
+        aria-describedby="email-error"
+        disabled={disabled}
         className={`${styles.input} ${errors.email ? styles.error : ""}`}
-        {...register("email", {
-          required: "Email is required",
-          pattern: {
-            value: emailPattern,
-            message: "Enter a valid email address (example: name@example.com)",
-          },
-        })}
+        {...register("email", emailRules())}
+        onBlur={(event) => {
+          const v = normalizeEmail(event.target.value);
+          if (v !== event.target.value) {
+            event.target.value = v;
+            setValue("email", v, { shouldValidate: true });
+          }
+        }}
       />
       {errors.email && (
-        <span className={styles.errorMessage}>{errors.email.message}</span>
+        <span id="email-error" className={styles.errorMessage}>
+          {errors.email.message}
+        </span>
       )}
+
       <button
         type="submit"
-        disabled={isSubmitting || orderPlaced}
+        disabled={disabled}
         className={`${styles.button} ${orderPlaced ? styles.submitted : ""}`}
       >
-        {orderPlaced ? "The Order is Placed" : "Order"}
+        {orderPlaced
+          ? "The Order is Placed"
+          : isSubmitting
+          ? "Sending…"
+          : "Order"}
       </button>
     </form>
   );

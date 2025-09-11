@@ -1,15 +1,18 @@
 import styles from "./styles.module.css";
-import Instagram from "../../assets/icons/ic-instagram.svg";
-import Whatsapp from "../../assets/icons/ic-whatsapp.svg";
+import Instagram from "@/assets/icons/ic-instagram.svg";
+import Whatsapp from "@/assets/icons/ic-whatsapp.svg";
+
 const address = "Wallstraße 9-13, 10179 Berlin, Deutschland";
-const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(address)}&z=15&output=embed`;
+const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
+  address
+)}&z=15&output=embed`;
 
 const Footer = () => {
   return (
     <div className={styles.container}>
       <footer>
         <h2>Contact</h2>
-        <footer className={styles.flexWrapper}>
+        <div className={styles.flexWrapper}>
           {/* Contact blocks */}
           <div className={styles.infoGrid}>
             <div className={`${styles.infoBlock} ${styles.phoneBlock}`}>
@@ -58,7 +61,7 @@ const Footer = () => {
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
-        </footer>
+        </div>
         {/* Map section */}
       </footer>
     </div>

@@ -1,23 +1,36 @@
 import { useSelector } from "react-redux";
 import OrderForm from "../orderForm";
+import { derivePricing } from "@/shared/utils/product";
+import { formatPrice } from "@/shared/utils/money";
 import styles from "./styles.module.css";
 
 const OrderDetails = ({ onSuccess, orderPlaced }) => {
   const { items } = useSelector((state) => state.cart);
-  const count = items.reduce((sum, item) => sum + item.quantity, 0);
-  const total = items.reduce((sum, item) => {
-    const price = item.discount ? item.discont_price : item.price;
-    return sum + price * item.quantity;
+
+  const itemCount = items.reduce(
+    (sum, cartItem) => sum + (cartItem.quantity || 0),
+    0
+  );
+
+  const totalAmount = items.reduce((sum, cartItem) => {
+    const { effectivePrice } = derivePricing(cartItem);
+    const lineTotal = (Number(effectivePrice) || 0) * (cartItem.quantity || 0);
+    return sum + lineTotal;
   }, 0);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} aria-live="polite">
       <h2 className={styles.title}>Order details</h2>
-      <p className={styles.items}>{count} items</p>
+
+      <p className={styles.items}>
+        {itemCount} {itemCount === 1 ? "item" : "items"}
+      </p>
+
       <div className={styles.totalRow}>
         <span className={styles.totalLabel}>Total</span>
-        <span className={styles.totalPrice}>${total}</span>
+        <span className={styles.totalPrice}>{formatPrice(totalAmount)}</span>
       </div>
+
       <OrderForm onSuccess={onSuccess} orderPlaced={orderPlaced} />
     </div>
   );
