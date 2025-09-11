@@ -1,12 +1,76 @@
-# React + Vite
+# Pet Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern front-end for an online pet supplies store built with React and Vite. It allows customers to browse categories, explore products, manage a shopping cart and submit orders.
 
-Currently, two official plugins are available:
+## Features
+- **Dynamic routing** powered by React Router for home, categories, product details, sales and cart pages.
+- **Product catalog** with filtering, sorting and discount views to help users find the right items.
+- **Product details** view with related items, zoomable images and add-to-cart controls.
+- **Shopping cart** stored in localStorage with quantity management and order summary.
+- **Order and discount forms** using React Hook Form with validation and API submission.
+- **API integration** via Axios with configurable base URL.
+- **State management** through Redux Toolkit slices for categories, products and cart.
+- **Responsive UI** using Material UI components and custom theming.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- [React 19](https://react.dev/)
+- [Vite 7](https://vitejs.dev/)
+- [React Router 7](https://reactrouter.com/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Material UI](https://mui.com/)
+- [React Hook Form](https://react-hook-form.com/)
+- [Axios](https://axios-http.com/)
 
-## Expanding the ESLint configuration
+## Getting Started
+### Prerequisites
+- Node.js 18+
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Installation
+```bash
+npm install
+```
+
+### Development server
+```bash
+npm run dev
+```
+
+### Linting
+```bash
+npm run lint
+```
+
+### Production build
+```bash
+npm run build
+```
+
+### Preview build
+```bash
+npm run preview
+```
+
+## Environment Variables
+Create a `.env` file in the project root to override defaults.
+
+| Variable        | Description                              | Default                                         |
+| --------------- | ---------------------------------------- | ----------------------------------------------- |
+| `VITE_API_URL`  | Base URL of the backend API used by axios | `https://petshop-project-backend.vercel.app` |
+
+## Project Structure
+- `src/pages` – application pages (home, categories, products, sales, cart).
+- `src/components` – reusable UI building blocks such as product cards, forms and lists.
+- `src/redux` – Redux Toolkit slices and store configuration.
+- `src/shared` – shared utilities, HTTP client and validation rules.
+- `src/ui` – smaller UI elements like breadcrumbs, filters and section headings.
+
+## Scripts
+| Command            | Description                      |
+| ------------------ | -------------------------------- |
+| `npm run dev`      | Start development server with HMR |
+| `npm run build`    | Bundle application for production |
+| `npm run preview`  | Preview the production build      |
+| `npm run lint`     | Run ESLint checks                 |
+
+## License
+This project is currently unlicensed.
