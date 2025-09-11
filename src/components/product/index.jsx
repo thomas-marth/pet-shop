@@ -54,11 +54,11 @@ const Product = ({ product }) => {
     dispatch(addToCart({ product, quantity }));
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (event) => {
     const { left, top, width, height } =
-      e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - left) / width) * 100;
-    const y = ((e.clientY - top) / height) * 100;
+      event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - left) / width) * 100;
+    const y = ((event.clientY - top) / height) * 100;
     if (imgRef.current) {
       imgRef.current.style.transformOrigin = `${x}% ${y}%`;
     }
