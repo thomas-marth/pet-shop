@@ -9,7 +9,6 @@ export const useCategories = (limit) => {
     shallowEqual
   );
 
-  // грузим только если ничего не загружено и не идёт запрос
   useEffect(() => {
     if (items.length === 0 && status === "idle") {
       dispatch(fetchCategories());

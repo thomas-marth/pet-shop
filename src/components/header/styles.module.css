@@ -115,13 +115,6 @@
   right: 36px;
 }
 
-.menuBtn {
-  margin-left: 7px;
-}
-.menuIcon {
-  font-size: 40px;
-}
-
 @media (max-width: 768px) {
   .actions {
     gap: 20px;

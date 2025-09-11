@@ -72,9 +72,13 @@ const Header = () => {
             <IconButton
               aria-label="Open navigation menu"
               onClick={toggleDrawer(true)}
-              className={styles.menuBtn}
+              className={`${styles.menuBtn} ${styles.mui}`}
+              sx={{ marginLeft: "9px" }}
             >
-              <MenuIcon className={styles.menuIcon} />
+              <MenuIcon
+                className={`${styles.menuIcon} `}
+                sx={{ fontSize: "40px" }}
+              />
             </IconButton>
 
             <Drawer
