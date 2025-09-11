@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Typography, Button } from "@mui/material";
@@ -28,6 +28,10 @@ const Product = ({ product }) => {
     canToggle: canToggleDescription,
     displayText: descriptionText,
   } = useProductDescriptionExpandable(product);
+
+  useEffect(() => {
+    setQuantity(1);
+  }, [product?.id]);
 
   if (!product) return null;
 
