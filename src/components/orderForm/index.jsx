@@ -31,10 +31,11 @@ const OrderForm = ({ onSuccess, orderPlaced }) => {
         placeholder="Name"
         className={`${styles.input} ${errors.name ? styles.error : ""}`}
         {...register("name", {
-          required: "Required",
+          required: "Name is required",
           pattern: {
             value: namePattern,
-            message: "Wrong name",
+            message:
+              "Name must consist of 2–60 characters, incl. spaces and hyphens",
           },
           minLength: 2,
           maxLength: 60,
@@ -48,10 +49,10 @@ const OrderForm = ({ onSuccess, orderPlaced }) => {
         placeholder="Phone number"
         className={`${styles.input} ${errors.phone ? styles.error : ""}`}
         {...register("phone", {
-          required: "Required",
+          required: "Phone number is required",
           pattern: {
             value: phonePattern,
-            message: "Wrong phone number",
+            message: "Phone number must be at least 7 digits",
           },
         })}
       />
@@ -63,8 +64,11 @@ const OrderForm = ({ onSuccess, orderPlaced }) => {
         placeholder="Email"
         className={`${styles.input} ${errors.email ? styles.error : ""}`}
         {...register("email", {
-          required: "Required",
-          pattern: { value: emailPattern, message: "Wrong email" },
+          required: "Email is required",
+          pattern: {
+            value: emailPattern,
+            message: "Enter a valid email address (example: name@example.com)",
+          },
         })}
       />
       {errors.email && (

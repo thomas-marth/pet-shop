@@ -98,12 +98,13 @@
 .mapWrapper {
   overflow: hidden;
   border-radius: 12px;
+  height: 400px;
 }
 
 .map {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  border: 0;
 }
 
 @media (max-width: 768px) {

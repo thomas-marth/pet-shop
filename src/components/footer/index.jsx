@@ -1,7 +1,8 @@
 import styles from "./styles.module.css";
 import Instagram from "../../assets/icons/ic-instagram.svg";
 import Whatsapp from "../../assets/icons/ic-whatsapp.svg";
-import MapImage from "../../assets/images/map.png";
+const address = "Wallstraße 9-13, 10179 Berlin, Deutschland";
+const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(address)}&z=15&output=embed`;
 
 const Footer = () => {
   return (
@@ -48,11 +49,14 @@ const Footer = () => {
             </div>
           </div>
           <div className={styles.mapWrapper}>
-            <img
-              src={MapImage}
-              alt="Store location map"
+            <iframe
+              title="Store location map"
+              src={mapSrc}
               className={styles.map}
-            />
+              loading="lazy"
+              allowFullScreen=""
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </footer>
         {/* Map section */}

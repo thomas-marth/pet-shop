@@ -18,6 +18,10 @@
   color: #8b8b8b;
 }
 
+.input:focus {
+  outline-color: #0965b1;
+}
+
 .error {
   border-color: #ff4d4f;
 }
